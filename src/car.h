@@ -23,9 +23,10 @@ class Car{
     Car(const Car& _car); //copy
     ~Car();               //dist
 
-
-    //operator << per date e ps
-
+    //operator << per date - ps - car
+    friend ostream& operator <<(ostream& os, const Power_supply& _ps);
+    friend ostream& operator <<(ostream& os, const vector<int>& _size); 
+    friend ostream& operator <<(ostream& os, const Car& _car);
 };
 
 #endif

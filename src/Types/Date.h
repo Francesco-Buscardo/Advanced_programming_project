@@ -13,6 +13,8 @@ class Date {
     Date();
     Date(int _d, int _m, int _y);
     ~Date();
+
+    friend ostream& operator<<(ostream& os, const Date& _date);
 };
 
 #endif

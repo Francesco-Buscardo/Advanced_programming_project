@@ -1,10 +1,48 @@
 #include "car.h"
-#include "Types/Date.h"
-#include "Types/Power_supply.h"
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+
+ostream& operator <<(ostream& os, const Power_supply& _ps) {
+  switch (_ps) {
+    case GASOLINE: os << "Gasoline"; 
+                  break;
+    case DIESEL: os << "Diesel"; 
+                break;
+    case ELECTRIC: os << "Electric"; 
+                  break;
+    case HYBRID: os << "Hybrid"; 
+                break;
+    default: os << "Nothing"; 
+            break;
+  }
+  return os;
+}
+
+ostream& operator <<(ostream& os, const vector<int>& _size) {
+  if (_size.size() == 3) {
+    os << "x: " << _size[0] << "  y: " << _size[1] << "  z: " << _size[2];
+  } else {
+    os << "null";
+  }
+
+  return os;
+}
+
+ostream& operator <<(ostream& os, const Car& _car) {
+  os << "-------------------------------------------" << endl
+     << "Car " << "ID: " << _car.ID_car << endl
+     << "-------------------------------------------" << endl
+     << "Model: " << _car.model_car << endl 
+     << "Price: " << _car.price_car << endl
+     << "Production Year: " << _car.production_year_car << endl
+     << "Power Supply: " << _car.power_supply_car << endl
+     << "Color (HEX): " << _car.color_car << endl
+     << "Size (mm): " << _car.size_car << endl
+     << "-------------------------------------------" << endl;
+  return os;
+}
 
 Car::Car() : ID_car("CAR000"), price_car(0.0), production_year_car(0, 0, 0), power_supply_car(NOTHNG), color_car("#FFFFFF"), size_car({0, 0, 0}), model_car("null"){
   cout << "-------------------------------------------" << endl;
@@ -20,38 +58,13 @@ Car::Car(string _id, long double _price, Date _date, Power_supply _ps, string _c
   cout << "Model: " << model_car << endl;
   cout << "Price: " << price_car << endl;
   cout << "Production Year: " << production_year_car << endl;
-
   cout << "Power Supply: " << power_supply_car << endl;
-  switch (power_supply_car) {
-    case GASOLINE: cout << "Gasoline"; 
-                  break;
-    case DIESEL: cout << "Diesel"; 
-                break;
-    case ELECTRIC: cout << "Electric"; 
-                  break;
-    case HYBRID: cout << "Hybrid"; 
-                break;
-    default: cout << "Nothing"; 
-            break;
-  }
-  cout << endl;
-
   cout << "Color (HEX): " << color_car << endl;
   cout << "Size (mm): " << size_car << endl;
-  if (size_car.size() == 3) {
-    cout << "x: " << size_car[0] << "  y: " << size_car[1] << "  z: " << size_car[2];
-  } else {
-    cout << "null";
-  }
   cout << endl << "-------------------------------------------" << endl;
 }
 
 Car::~Car(){
-
-  //ridichiarazione metodo << per ogni attributo in class Car per
-  // date
-  // ps
-
   cout << "-------------------------------------------" << endl;
   cout << "Deleting Car" << endl;
   cout << "-------------------------------------------" << endl;
@@ -59,29 +72,8 @@ Car::~Car(){
   cout << "Model: " << model_car << endl;
   cout << "Price: " << price_car << endl;
   cout << "Production Year: " << production_year_car << endl;
-
   cout << "Power Supply: " << power_supply_car << endl;
-  switch (power_supply_car) {
-    case GASOLINE: cout << "Gasoline"; 
-                  break;
-    case DIESEL: cout << "Diesel"; 
-                break;
-    case ELECTRIC: cout << "Electric"; 
-                  break;
-    case HYBRID: cout << "Hybrid"; 
-                break;
-    default: cout << "Nothing"; 
-            break;
-  }
-  cout << endl;
-
   cout << "Color (HEX): " << color_car << endl;
   cout << "Size (mm): " << size_car << endl;
-  if (size_car.size() == 3) {
-    cout << "x: " << size_car[0] << "  y: " << size_car[1] << "  z: " << size_car[2];
-  } else {
-    cout << "null";
-  }
   cout << endl << "-------------------------------------------" << endl;
 }
-
