@@ -23,17 +23,18 @@ int main(int argc, char *argv[]){
   cout << "-------------------------------------------" << endl;
   cout << "Initializing Concessionaria . . ." << endl;
   cout << "-------------------------------------------" << endl;
+  
+  Concessionaria concessionaria(argv[1]);
 
   vector<Car>        conc_cars     = init_cars();
-  vector<Laboratory> conc_labs     = init_labs();
-  vector<Shop>       conc_shops    = init_shops();
-  vector<Rental>     conc_rentals  = init_rentals();
-
-  Concessionaria concessionaria(argv[1]);
+  // vector<Laboratory> conc_labs     = init_labs();
+  // vector<Shop>       conc_shops    = init_shops();
+  // vector<Rental>     conc_rentals  = init_rentals();
 
 
   cout << "-------------------------------------------" << endl;
 
+ // while(true) {}
 
   return 0;
 }

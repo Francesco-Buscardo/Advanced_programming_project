@@ -27,7 +27,7 @@ istream& operator >>(istream& is, Power_supply& _ps) {
 	return is;
 }
 
-vector<Car>& init_cars(){
+vector<Car> init_cars(){
 
 	ifstream _in_file;
 	_in_file.open("./dataSet/cars.txt", ios::in);
@@ -59,6 +59,7 @@ vector<Car>& init_cars(){
 	  Date yop(dd, mm, yyyy);
 	  vector<int> dim = {x, y, z};
 	  Car car(id, price, yop, ps, color, dim, model);
+		cout << car << endl;
 
 		cars.push_back(car);
 	}
@@ -67,7 +68,7 @@ vector<Car>& init_cars(){
 	return cars;
 }
 
-vector<Laboratory>& init_labs(){
+vector<Laboratory> init_labs(){
 
 	ifstream _in_file;
 	_in_file.open("./dataSet/labs.txt", ios::in);
@@ -78,7 +79,7 @@ vector<Laboratory>& init_labs(){
 	return labs; 
 }
 
-vector<Shop>& init_shops(){
+vector<Shop> init_shops(){
 
 	ifstream _in_file;
 	_in_file.open("./dataSet/shops.txt", ios::in);
@@ -89,7 +90,7 @@ vector<Shop>& init_shops(){
 	return shops; 
 }
 
-vector<Rental>& init_rentals(){
+vector<Rental> init_rentals(){
 
 	ifstream _in_file;
 	_in_file.open("./dataSet/rentals.txt", ios::in);

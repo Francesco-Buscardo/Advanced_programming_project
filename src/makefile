@@ -1,10 +1,10 @@
 CXX = g++
 CXXFLGS = -std=c++11 -W
-ARGS = *.cc ./extConcessionaria/*.cc ./Types/*.cc
+ARGS = $(wildcard *.cc ./extConcessionaria/*.cc ./Types/*.cc)
 EXEC = concessionaria
 
 compile:
 	@$(CXX) $(CXXFLGS) $(ARGS) -o $(EXEC)
-	@echo "run $(EXEC)"
+	@echo "do: make run NAME_CONCESSIONARIA=<name>"
 run: compile
-	@./$(EXEC)
+	@./$(EXEC) $(NAME_CONCESSIONARIA)

@@ -8,7 +8,7 @@ HYBRID
 4568
 1950
 1213
-Ferrari SF90 Stradale
+Ferrari-SF90-Stradale
 ;
 CAR002
 315000.00
@@ -20,7 +20,7 @@ GAS
 4797
 2030
 1136
-Lamborghini Aventador SVJ
+Lamborghini-Aventador-SVJ
 ;
 CAR003
 198000.00
@@ -32,7 +32,7 @@ HYBRID
 4535
 1900
 1298
-McLaren Artura
+McLaren-Artura
 ;
 CAR004
 172500.50
@@ -44,7 +44,7 @@ GAS
 4519
 1852
 1295
-Porsche 911 Turbo S
+Porsche911-Turbo-S
 ;
 CAR005
 385000.00
@@ -56,7 +56,7 @@ ELECTRIC
 4785
 1995
 1220
-Lotus Evija
+Lotus-Evija
 ;
 CAR006
 129000.00
@@ -68,7 +68,7 @@ GAS
 4465
 1950
 1230
-Aston Martin Vantage
+Aston-Martin-Vantage
 ;
 CAR007
 430000.00
@@ -80,7 +80,7 @@ GAS
 5453
 1990
 1523
-Rolls-Royce Ghost
+Rolls-Royce-Ghost
 ;
 CAR008
 2650000.00
@@ -92,7 +92,7 @@ GAS
 4500
 2000
 1200
-Bugatti Chiron Super Sport
+Bugatti-Chiron-Super-Sport
 ;
 CAR009
 210000.00
@@ -104,7 +104,7 @@ HYBRID
 4712
 1905
 1275
-BMW M8 Competition
+BMW-M8-Competition
 ;
 CAR010
 280000.00
@@ -116,5 +116,5 @@ ELECTRIC
 5010
 1960
 1350
-Porsche Taycan Turbo S
+Porsche-Taycan-Turbo S
 ;

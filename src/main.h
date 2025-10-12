@@ -12,9 +12,9 @@
 using namespace std;
 
 istream& operator >>(istream& is, Power_supply& _ps);
-vector<Car>&        init_cars();
-vector<Laboratory>& init_labs();
-vector<Shop>&       init_shops();
-vector<Rental>&     init_rentals();
+vector<Car>        init_cars();
+vector<Laboratory> init_labs();
+vector<Shop>       init_shops();
+vector<Rental>     init_rentals();
 
 #endif
