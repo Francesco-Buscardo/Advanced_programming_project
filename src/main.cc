@@ -1,23 +1,101 @@
+#include "main.h"
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 using namespace std;
 
-#include "Concessionaria.h"
+istream& operator >>(istream& is, Power_supply& _ps) {
 
-/*
- * Reparti:
- *   negozio 
- *   noleggio
- *   officina.
- * La parte principale:
- *   compravendita di veicoli (nuovi e usati), 
- *   gestione parco auto
- * Un'altra parte:
- *   gestione del noleggio di una gamma di macchine in possesso 
- * L'autoconcessionaria fornirà assistenza ai clienti tramite officina, che dovrà anche occuparsi della riparazione delle macchine destinate sia alla rivendita che al noleggio.
-*/
+	string _str;
+	is >> _str;
 
-int main(int argc, char *argv[]){
+	if(_str.compare("GASOLINE")) {
+		_ps = GASOLINE;
+	} else if(_str.compare("HYBRID")) {
+		_ps = HYBRID;
+	} else if(_str.compare("DIESEL")) {
+		_ps = DIESEL;
+	} else if(_str.compare("METHANE")) {
+		_ps = METHANE;
+	} else if(_str.compare("ELECTRIC")) {
+		_ps = ELECTRIC;
+	} else {
+		_ps = NOTHNG;
+	}
 
-  Concessionaria concessionaria;
-  return 0;
+	return is;
+}
+
+vector<Car>& init_cars(){
+
+	ifstream _in_file;
+	_in_file.open("./dataSet/cars.txt", ios::in);
+
+	vector<Car> cars;
+
+	string id;
+	long double price;
+	int dd, mm, yyyy;
+	Power_supply ps;
+	string color;
+	int x, y, z;
+	string model;
+	string sc;
+
+	while (_in_file >> id 
+				   				>> price 
+				   				>> dd
+				   				>> mm
+				   				>> yyyy
+				   				>> ps 
+				   				>> color 
+				   				>> x
+				   				>> y
+				   				>> z 
+				   				>> model
+								  >> sc) {
+
+	  Date yop(dd, mm, yyyy);
+	  vector<int> dim = {x, y, z};
+	  Car car(id, price, yop, ps, color, dim, model);
+
+		cars.push_back(car);
+	}
+
+	_in_file.close();
+	return cars;
+}
+
+vector<Laboratory>& init_labs(){
+
+	ifstream _in_file;
+	_in_file.open("./dataSet/labs.txt", ios::in);
+	
+	vector<Laboratory> labs;
+
+	_in_file.close();
+	return labs; 
+}
+
+vector<Shop>& init_shops(){
+
+	ifstream _in_file;
+	_in_file.open("./dataSet/shops.txt", ios::in);
+
+	vector<Shop> shops;
+
+	_in_file.close();
+	return shops; 
+}
+
+vector<Rental>& init_rentals(){
+
+	ifstream _in_file;
+	_in_file.open("./dataSet/rentals.txt", ios::in);
+
+	vector<Rental> rentals;
+
+	_in_file.close();
+	return rentals; 
 }

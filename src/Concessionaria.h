@@ -5,16 +5,17 @@
 using namespace std;
 
 class Concessionaria {
-  private:
+  string name;
+
   public:
     Concessionaria();
-    Concessionaria(const Concessionaria&); // costruttore copia
+    Concessionaria(string _n);
+    Concessionaria(const Concessionaria& _c); // costruttore copia
     ~Concessionaria();
 
     //OPERATORI
     
     //METODI
-  protected:
 };
 
 #endif

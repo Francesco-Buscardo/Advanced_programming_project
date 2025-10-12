@@ -1,0 +1,22 @@
+FILE: cars.txt
+ID_car
+price_car
+dd
+mm
+yyyy
+power_supply_car
+color_car
+x
+y
+z
+model_car
+;
+
+FILE: labs.txt
+;
+
+FILE: rentals.txt
+;
+
+FILE: shops.txt
+;
