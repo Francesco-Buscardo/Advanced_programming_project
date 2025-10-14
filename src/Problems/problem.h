@@ -11,7 +11,7 @@ class Problem{
   public:
     Problem(int _c);
     virtual ~Problem() = default;
-    virtual bool delete_problem();
+    virtual bool delete_problem() = 0;
 };
 
 #endif

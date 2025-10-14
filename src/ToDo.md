@@ -1,6 +1,7 @@
-[1] fix ereditarietà in Problem - vector<Problem> cars_problem in CAR.H
-[2] creare un paio di rental
-  [2.1] popolarli con cars
-[3] creare un paio di shops
-  [3.1] popolarli co cars
-  [4] aggiungi implemtazione in lab metodo: fix_car()
+[] aggiungi logica in lab - fix car - del meccanico
+[] creare un paio di rental
+  [] popolarli con cars
+[] creare un paio di shops
+  [] popolarli co cars
+[] menu da parte customer per interfacciarsi con la concessionaria
+[] aggiornare UML <--------

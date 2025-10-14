@@ -31,6 +31,7 @@ class Car{
     friend ostream& operator <<(ostream& os, const Car& _car);
   	bool operator <(const Car& _car) const;
 
+    bool remove_problems();
   };
 
 #endif

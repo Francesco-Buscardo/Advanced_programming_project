@@ -5,6 +5,7 @@
 using namespace std;
 
 ostream& operator <<(ostream& os, const Power_supply& _ps) {
+  
   switch (_ps) {
     case GASOLINE: os << "Gasoline"; 
                   break;
@@ -21,6 +22,7 @@ ostream& operator <<(ostream& os, const Power_supply& _ps) {
 }
 
 ostream& operator <<(ostream& os, const vector<int>& _size) {
+  
   if (_size.size() == 3) {
     os << "x: " << _size[0] << "  y: " << _size[1] << "  z: " << _size[2];
   } else {
@@ -31,6 +33,7 @@ ostream& operator <<(ostream& os, const vector<int>& _size) {
 }
 
 ostream& operator <<(ostream& os, const Car& _car) {
+ 
   os << "-------------------------------------------" << endl
      << "Car " << "ID: " << _car.ID_car << endl
      << "-------------------------------------------" << endl
@@ -45,6 +48,7 @@ ostream& operator <<(ostream& os, const Car& _car) {
 }
 
 bool Car::operator <(const Car& _car) const {
+  
   return this->ID_car < _car.ID_car;
 }
 
@@ -100,4 +104,11 @@ Car::~Car(){
 //   cout << "Color (HEX): " << color_car << endl;
 //   cout << "Size (mm): " << size_car << endl;
 //   cout << endl << "-------------------------------------------" << endl;
+}
+
+bool Car::remove_problems() {
+
+  problems_car.clear();
+
+  return problems_car.empty();
 }

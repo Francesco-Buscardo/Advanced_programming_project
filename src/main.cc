@@ -29,10 +29,20 @@ istream& operator >>(istream& is, Power_supply& _ps) {
 	return is;
 }
 
-ostream& operator  <<(ostream& os, const Laboratory& _lab) {
+ostream& operator <<(ostream& os, const Laboratory& _lab) {
 	os << "-------------------------------------------" << endl
      << "Lab " << "ID: " << _lab.ID_laboratory << endl
      << "-------------------------------------------" << endl;
+	return os;
+}
+
+ostream& operator <<(ostream& os, const Mechanic& _mech){
+		os << "-------------------------------------------" << endl
+       << "Mechanic " << "ID: " << _mech.ID_employee << endl
+       << "-------------------------------------------" << endl
+			 << _mech.name_employee << " "
+			 << _mech.lastname_employee << ", "
+			 << _mech.age_employee;
 	return os;
 }
 
@@ -81,27 +91,54 @@ vector<Laboratory> init_labs(const vector<Car>& _cars){
 
 	srand((unsigned) time(0));
 
-	ifstream _in_file;
-	_in_file.open("./dataSet/labs.txt", ios::in);
+	ifstream _in_file_lab;
+	ifstream _in_file_mechanic;
+	_in_file_lab.open("./dataSet/labs.txt", ios::in);
+	_in_file_mechanic.open("./dataSet/mechanics.txt", ios::in);
+
 	
 	vector<Laboratory> labs;
 
 	string ID_lab;
-	int n;
-	string sc;
-	while(_in_file >> ID_lab >> n >> sc){
+	int n; //cars num
+	int m; //mechenics num
+	string sc; //;
+
+	string ID_employee;
+  string name_employee;
+  string lastname_employee;
+  int age_employee;
+
+	while (_in_file_lab >> ID_lab 
+											>> n 
+											>> m
+											>> sc){
 		Laboratory lab(ID_lab);
 		cout << lab << endl;
 		cout << "CARS IN LAB" << endl;
-		while(n -- > 0) {
+		while(n-- > 0) {
 			int i = rand() % _cars.size();
 			lab.add_car(_cars.at(i));
 			cout << _cars.at(i);
 		}
+
+		cout << "MECHANICS IN LAB" << endl;
+		while(m-- > 0) {
+			_in_file_mechanic >> ID_employee
+								 	 			>> name_employee 
+								 	 			>> lastname_employee
+								 	 			>> age_employee
+								 	 			>> sc;
+			Mechanic m(ID_employee, name_employee, lastname_employee, age_employee);
+			lab.add_mechanic(m);
+			cout << m << endl;
+		}
+
 		labs.push_back(lab);
 	}
 
-	_in_file.close();
+	_in_file_lab.close();
+	_in_file_mechanic.close();
 	return labs; 
 }
 

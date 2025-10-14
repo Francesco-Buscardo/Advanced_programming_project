@@ -3,15 +3,19 @@
 
 #include "../Concessionaria.h"
 #include "../car.h"
+#include "../staff/mechanic.h"
 #include <iostream>
 #include <string>
 #include <set>
 using namespace std;
 
-class Laboratory: public Concessionaria{ 
+class Laboratory: public Concessionaria{
+	
+	set<Mechanic> available_mechanics; //available mechanics for repairing cars
+
 	protected:
 		string ID_laboratory;
-		set<Car> under_maintenace_cars;
+		set<Car> under_maintenance_cars;
 
 	public: 
 		Laboratory(string _id);
@@ -21,8 +25,9 @@ class Laboratory: public Concessionaria{
 		friend ostream& operator <<(ostream& so, const Laboratory& _lab);
 
 		void add_car(const Car& _car);     //add car to under_maintenace_cars
-		void remove_cars(const Car& _car);  //remove car from under_maintenace_cars
+		void remove_car(const Car& _car);  //remove car from under_maintenace_cars
 		bool fix_car(Car& _car);
+		void add_mechanic(const Mechanic& _mech);
 };
 
 #endif
