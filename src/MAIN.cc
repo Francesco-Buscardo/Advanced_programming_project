@@ -27,11 +27,12 @@ int main(int argc, char *argv[]){
   Concessionaria concessionaria(argv[1]);
 
   vector<Car>        conc_cars     = init_cars();
-  // vector<Laboratory> conc_labs     = init_labs();
+  vector<Laboratory> conc_labs     = init_labs(conc_cars);
   // vector<Shop>       conc_shops    = init_shops();
   // vector<Rental>     conc_rentals  = init_rentals();
 
-
+  cout << "-------------------------------------------" << endl;
+  cout << "Stop Initialization!" << endl;
   cout << "-------------------------------------------" << endl;
 
  // while(true) {}

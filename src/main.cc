@@ -3,6 +3,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 istream& operator >>(istream& is, Power_supply& _ps) {
@@ -25,6 +27,13 @@ istream& operator >>(istream& is, Power_supply& _ps) {
 	}
 
 	return is;
+}
+
+ostream& operator  <<(ostream& os, const Laboratory& _lab) {
+	os << "-------------------------------------------" << endl
+     << "Lab " << "ID: " << _lab.ID_laboratory << endl
+     << "-------------------------------------------" << endl;
+	return os;
 }
 
 vector<Car> init_cars(){
@@ -68,12 +77,29 @@ vector<Car> init_cars(){
 	return cars;
 }
 
-vector<Laboratory> init_labs(){
+vector<Laboratory> init_labs(const vector<Car>& _cars){
+
+	srand((unsigned) time(0));
 
 	ifstream _in_file;
 	_in_file.open("./dataSet/labs.txt", ios::in);
 	
 	vector<Laboratory> labs;
+
+	string ID_lab;
+	int n;
+	string sc;
+	while(_in_file >> ID_lab >> n >> sc){
+		Laboratory lab(ID_lab);
+		cout << lab << endl;
+		cout << "CARS IN LAB" << endl;
+		while(n -- > 0) {
+			int i = rand() % _cars.size();
+			lab.add_car(_cars.at(i));
+			cout << _cars.at(i);
+		}
+		labs.push_back(lab);
+	}
 
 	_in_file.close();
 	return labs; 

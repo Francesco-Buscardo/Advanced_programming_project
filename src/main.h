@@ -12,8 +12,9 @@
 using namespace std;
 
 istream& operator >>(istream& is, Power_supply& _ps);
+ostream& operator  <<(ostream& os, const Laboratory& _lab);
 vector<Car>        init_cars();
-vector<Laboratory> init_labs();
+vector<Laboratory> init_labs(const vector<Car>& _car);
 vector<Shop>       init_shops();
 vector<Rental>     init_rentals();
 

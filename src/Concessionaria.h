@@ -5,7 +5,8 @@
 using namespace std;
 
 class Concessionaria {
-  string name;
+  protected:
+    string name;
 
   public:
     Concessionaria();

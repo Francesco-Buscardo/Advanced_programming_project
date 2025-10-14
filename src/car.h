@@ -3,19 +3,21 @@
 
 #include "./Types/Date.h"
 #include "./Types/Power_supply.h"
+#include "Problems/problem.h"
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
 
 class Car{
-  const string ID_car;
+  const string ID_car; //o targa
   long double price_car;
   const Date production_year_car;
   const Power_supply power_supply_car;
   const string color_car;
   const vector<int> size_car; //u: mm
   const string model_car;
+  vector<Problem*> problems_car;
 
   public:
     Car();                //default
@@ -27,6 +29,8 @@ class Car{
     friend ostream& operator <<(ostream& os, const Power_supply& _ps);
     friend ostream& operator <<(ostream& os, const vector<int>& _size); 
     friend ostream& operator <<(ostream& os, const Car& _car);
-};
+  	bool operator <(const Car& _car) const;
+
+  };
 
 #endif

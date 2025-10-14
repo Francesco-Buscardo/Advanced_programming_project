@@ -18,5 +18,7 @@ FILE: labs.txt
 FILE: rentals.txt
 ;
 
-FILE: shops.txt
+FILE: labs.txt
+ID_laboratory
+n_cars
 ;
