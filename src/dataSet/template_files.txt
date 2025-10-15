@@ -1,4 +1,4 @@
-FILE: cars.txt
+FILE: cars.txt, rental_cars.txt
 ID_car
 price_car
 dd
@@ -11,24 +11,22 @@ y
 z
 model_car
 ;
-
 FILE: labs.txt
 ID_laboratory
 n //number of cars
 m //number of mechanics
 ;
-
 FILE: mechanics.txt
 ID_employee
 name_employee
 lastname_employee
 age_employee
 ;
-
-FILE: rentals.txt
-;
-
 FILE: labs.txt
 ID_laboratory
 n_cars
+;
+FILE: rentals.txt
+ID_rental
+n //num rental_cars
 ;
