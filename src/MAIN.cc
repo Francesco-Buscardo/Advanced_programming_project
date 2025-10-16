@@ -1,6 +1,4 @@
-#include "Concessionaria.h"
 #include "main.h"
-
 #include <iostream>
 using namespace std;
 
@@ -28,7 +26,7 @@ int main(int argc, char *argv[]){
 
   vector<Car>        conc_cars     = init_cars();
   vector<Laboratory> conc_labs     = init_labs(conc_cars);
-  // vector<Shop>       conc_shops    = init_shops();
+  vector<Shop>       conc_shops    = init_shops();
   vector<Rental>     conc_rentals  = init_rentals();
 
   cout << "-------------------------------------------" << endl;

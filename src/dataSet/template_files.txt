@@ -1,4 +1,4 @@
-FILE: cars.txt, rental_cars.txt
+FILE: cars.txt, rental_cars.txt, shop_cars.txt
 ID_car
 price_car
 dd
@@ -29,4 +29,8 @@ n_cars
 FILE: rentals.txt
 ID_rental
 n //num rental_cars
+;
+FILE: shop.txt
+ID_shop
+n //number od cars in shop
 ;

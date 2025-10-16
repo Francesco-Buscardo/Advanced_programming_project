@@ -59,6 +59,16 @@ ostream& operator <<(ostream& os, const Rental& _ren){
 	return os;
 }
 
+ostream& operator <<(ostream& os, const Shop& _shop){
+
+	os << "-------------------------------------------" << endl
+     << "Shop " << "ID: " << _shop.ID_shop << endl
+     << "-------------------------------------------" << endl;
+	
+	return os;
+}
+
+
 vector<Car> init_cars(){
 
 	ifstream _in_file;
@@ -159,14 +169,63 @@ vector<Laboratory> init_labs(const vector<Car>& _cars){
 	return labs; 
 }
 
-vector<Shop> init_shops(){
+vector<Shop> init_shops(){ //point of sale
 
 	ifstream _in_file;
+	ifstream _in_shop_cars;
 	_in_file.open("./dataSet/shops.txt", ios::in);
+	_in_shop_cars.open("./dataSet/shop_cars.txt", ios::in);
 
 	vector<Shop> shops;
 
+	string id_s;
+	int n; //num of cars in shop
+
+	//car info
+	string id;
+	long double price;
+	int dd, mm, yyyy;
+	Power_supply ps;
+	string color;
+	int x, y, z;
+	string model;
+	string sc;
+
+	while(_in_file >> id_s >> n >> sc) {
+		Shop s(id_s);
+
+		cout << s;
+
+		cout << "CARS IN SHOP" << endl;
+		while(n-- > 0){
+			_in_shop_cars >> id 
+				   					>> price 
+				   					>> dd
+				   					>> mm
+				   					>> yyyy
+				   					>> ps 
+				   					>> color 
+				   					>> x
+				   					>> y
+				   					>> z 
+				   					>> model
+								  	>> sc;
+
+			Date yop(dd, mm, yyyy);
+			vector<int> dim = {x, y, z};
+			Car car(id, price, yop, ps, color, dim, model);
+
+			s.add_car(car);
+
+			cout << car << endl;
+		}
+
+		shops.push_back(s);
+	}
+
 	_in_file.close();
+	_in_shop_cars.close();
+
 	return shops; 
 }
 
