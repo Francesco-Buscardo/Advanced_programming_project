@@ -2,18 +2,18 @@
 #define MAIN_H
 
 #include "car.h"
-#include "Concessionaria/Concessionaria.h"
-#include "Concessionaria/laboratory.h"
-#include "Concessionaria/rental.h"
-#include "Concessionaria/shop.h"
+#include "Departments/laboratory.h"
+#include "Departments/rental.h"
+#include "Departments/shop.h"
 #include "Staff/mechanic.h"
+#include "Types/fuel.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 using namespace std;
 
-istream& operator >>(istream& is, Power_supply& _ps);
+istream& operator >>(istream& is, Fuel& _fl);
 ostream& operator <<(ostream& os, const Laboratory& _lab);
 ostream& operator <<(ostream& os, const Mechanic& _mech);
 ostream& operator <<(ostream& os, const Rental& _ren);

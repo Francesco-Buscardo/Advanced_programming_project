@@ -7,23 +7,19 @@
 #include <cstdlib>
 using namespace std;
 
-istream& operator >>(istream& is, Power_supply& _ps){
+istream& operator >>(istream& is, Fuel& _fl){
 
 	string _str;
 	is >> _str;
 
 	if(_str.compare("GASOLINE")) {
-		_ps = GASOLINE;
+		_fl = GASOLINE;
 	} else if(_str.compare("HYBRID")) {
-		_ps = HYBRID;
+		_fl = HYBRID;
 	} else if(_str.compare("DIESEL")) {
-		_ps = DIESEL;
-	} else if(_str.compare("METHANE")) {
-		_ps = METHANE;
-	} else if(_str.compare("ELECTRIC")) {
-		_ps = ELECTRIC;
+		_fl = DIESEL;
 	} else {
-		_ps = NOTHNG;
+		_fl = GPL;
 	}
 
 	return is;
