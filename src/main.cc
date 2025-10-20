@@ -69,48 +69,49 @@ ostream& operator <<(ostream& os, const Shop& _shop){
 }
 
 
-vector<Car> init_cars(){
+// vector<Car> init_cars(){
 
-	ifstream _in_file;
-	_in_file.open("./dataSet/cars.txt", ios::in);
+// 	ifstream _in_file;
+// 	_in_file.open("./dataSet/cars.txt", ios::in);
 
-	vector<Car> cars;
+// 	vector<Car> cars;
 
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
+// 	string id;
+// 	long double price;
+// 	int dd, mm, yyyy;
+// 	Power_supply ps;
+// 	string color;
+// 	int x, y, z;
+// 	string model;
+// 	string sc;
 
-	while (_in_file >> id 
-				   				>> price 
-				   				>> dd
-				   				>> mm
-				   				>> yyyy
-				   				>> ps 
-				   				>> color 
-				   				>> x
-				   				>> y
-				   				>> z 
-				   				>> model
-								  >> sc) {
+// 	while (_in_file >> id 
+// 				   				>> price 
+// 				   				>> dd
+// 				   				>> mm
+// 				   				>> yyyy
+// 				   				>> ps 
+// 				   				>> color 
+// 				   				>> x
+// 				   				>> y
+// 				   				>> z 
+// 				   				>> model
+// 								  >> sc) {
 
-	  Date yop(dd, mm, yyyy);
-	  vector<int> dim = {x, y, z};
-	  Car car(id, price, yop, ps, color, dim, model);
-		cout << car << endl;
+// 	  Date yop(dd, mm, yyyy);
+// 	  vector<int> dim = {x, y, z};
+// 	  Car car(id, price, yop, ps, color, dim, model);
+// 		cout << car << endl;
 
-		cars.push_back(car);
-	}
+// 		cars.push_back(car);
+// 	}
 
-	_in_file.close();
-	return cars;
-}
+// 	_in_file.close();
+// 	return cars;
+// }
 
-vector<Laboratory> init_labs(const vector<Car>& _cars){
+// vector<Laboratory> init_labs(const vector<Car>& _cars)
+vector<Laboratory> init_labs(){
 
 	srand((unsigned) time(0));
 
@@ -140,12 +141,12 @@ vector<Laboratory> init_labs(const vector<Car>& _cars){
 
 		cout << lab << endl;
 
-		cout << "CARS IN LAB" << endl;
-		while(n-- > 0) {
-			int i = rand() % _cars.size();
-			lab.add_car(_cars.at(i));
-			cout << _cars.at(i);
-		}
+		// cout << "CARS IN LAB" << endl;
+		// while(n-- > 0) {
+		// 	int i = rand() % _cars.size();
+		// 	lab.add_car(_cars.at(i));
+		// 	cout << _cars.at(i);
+		// }
 
 		cout << "MECHANICS IN LAB" << endl;
 		while(m-- > 0) {
@@ -286,4 +287,139 @@ vector<Rental> init_rentals(){
 	_in_rental_cars.close();
 
 	return rentals; 
+}
+
+void management_shop(Shop& _shop){
+
+	int choice;
+
+	cout << "-------------------------------------------" << endl;
+	cout << "SHOP" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "1. Visualizza parco auto" << endl;
+	cout << "2. Aggiungi nuovo veicolo" << endl;
+	cout << "3. Rimuovi veicolo venduto" << endl;
+	cout << "4. Vendita veicolo a cliente" << endl;
+	cout << "5. Ricerca veicolo (per targa, marca, modello)" << endl;
+	cout << "6. Aggiungi dipendente" << endl;
+	cout << "7. Licenzia" << endl;
+	cout << "0. Torna al menu principale" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "Scelta: ";
+	cin >> choice;
+
+	while(true){
+		switch (choice){
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		default:
+			return;
+			break;
+		}
+	}
+}
+
+void management_laboratory(Laboratory& _lab){
+
+	int choice;
+
+	cout << "-------------------------------------------" << endl;
+	cout << "LABORATORY" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "1. Visualizza officina" << endl;
+	cout << "2. Aggiungi nuova macchina da riparare" << endl;
+	cout << "3. Ripara veicolo" << endl;
+	cout << "4. Ricerca veicolo (per targa, marca, modello)" << endl;
+	cout << "5. Aggiungi dipendente" << endl;
+	cout << "6. Licenzia" << endl;
+	cout << "0. Torna al menu principale" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "Scelta: ";
+	cin >> choice;
+
+	while(true){
+		switch (choice){
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			return;
+			break;
+		}
+	}
+}
+
+void management_rental(Renatl& _rental){
+
+	int choice;
+
+	cout << "-------------------------------------------" << endl;
+	cout << "RENTAL" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "1. Visualizza auto a noleggio" << endl;
+	cout << "2. Aggiungi nuova auto a noleggio" << endl;
+	cout << "3. Rimuovgi auto a noleggio" << endl;
+	cout << "4. Registra noleggio" << endl;
+	cout << "5. Registra restituzione" << endl;
+	cout << "6. Calcola costo noleggio" << endl;
+	cout << "7. Ricerca veicolo (per targa, marca, modello)" << endl;
+	cout << "8. Aggiungi dipendente" << endl;
+	cout << "9. Licenzia" << endl;
+	cout << "0. Torna al menu principale" << endl;
+	cout << "-------------------------------------------" << endl;
+	cout << "Scelta: ";
+	cin >> choice;
+
+	while(true){
+		switch (choice){
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		default:
+			return;
+			break;
+		}
+	}
 }

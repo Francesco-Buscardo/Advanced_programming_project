@@ -1,5 +1,5 @@
-#ifndef  TYRE_H 
-#define  TYRE_H
+#ifndef  __TYRE_H__ 
+#define  __TYRE_H__
 
 #include "problem.h"
 #include <iostream>
@@ -9,9 +9,8 @@ class Tyre: public Problem{
 
   public:
     Tyre();
+    Tyre(const Problem_code_t& _c);
     ~Tyre() override = default;
-
-    bool delete_problem() override;
 };
 
 #endif

@@ -2,9 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Engine::Engine(): Problem(1){
+Engine::Engine(): Problem(){
 }
 
-bool Engine::delete_problem(){
-  return true;
+Engine::Engine(const Problem_code_t& _c): Problem(_c){
 }

@@ -4,7 +4,9 @@
 #include <vector>
 using namespace std;
 
-ostream& operator <<(ostream& os, const Power_supply& _ps) {
+int Car::count_cars = 0;
+
+ostream& operator <<(ostream& os, const Fuel& _ps) {
   
   switch (_ps) {
     case GASOLINE: os << "Gasoline"; 
@@ -18,17 +20,6 @@ ostream& operator <<(ostream& os, const Power_supply& _ps) {
     default: os << "Nothing"; 
             break;
   }
-  return os;
-}
-
-ostream& operator <<(ostream& os, const vector<int>& _size) {
-  
-  if (_size.size() == 3) {
-    os << "x: " << _size[0] << "  y: " << _size[1] << "  z: " << _size[2];
-  } else {
-    os << "null";
-  }
-
   return os;
 }
 
@@ -49,61 +40,34 @@ ostream& operator <<(ostream& os, const Car& _car) {
 
 bool Car::operator <(const Car& _car) const {
   
-  return this->ID_car < _car.ID_car;
+  return this->ID_car <= _car.ID_car;
 }
 
-Car::Car() : ID_car("CAR000"), price_car(0.0), production_year_car(0, 0, 0), power_supply_car(NOTHNG), color_car("#FFFFFF"), size_car({0, 0, 0}), model_car("null"), problems_car(){
-  // cout << "-------------------------------------------" << endl;
-  // cout << "Creating Deafault Car" << endl;
-  // cout << "-------------------------------------------" << endl;
+Car::Car() : ID_car(-1), fuel_car(NOTHNG), price_car(0.0), model_car("null"), problems_car(){
 }
 
-Car::Car(string _id, long double _price, Date _date, Power_supply _ps, string _color, vector<int> _size, string _model) : ID_car(_id), price_car(_price), production_year_car(_date), power_supply_car(_ps), color_car(_color), size_car(_size), model_car(_model), problems_car(){
-  // cout << "-------------------------------------------" << endl;
-  // cout << "Creating Car" << endl;
-  // cout << "-------------------------------------------" << endl;
-  // cout << "ID: " << ID_car << endl;
-  // cout << "Model: " << model_car << endl;
-  // cout << "Price: " << price_car << endl;
-  // cout << "Production Year: " << production_year_car << endl;
-  // cout << "Power Supply: " << power_supply_car << endl;
-  // cout << "Color (HEX): " << color_car << endl;
-  // cout << "Size (mm): " << size_car << endl;
-  // cout << endl << "-------------------------------------------" << endl;
+Car::Car(const Fuel _fl, const long double _prc, const string _mdl): ID_car(++count_cars), fuel_car(_fl), price_car(_prc), model_car(_mdl){
 }
 
-Car::Car(const Car& _car) : ID_car(_car.ID_car), price_car(_car.price_car), production_year_car(_car.production_year_car), power_supply_car(_car.power_supply_car), color_car(_car.color_car), size_car(_car.size_car), model_car(_car.model_car){
+Car::Car(const Car& _car): ID_car(_car.ID_car), fuel_car(_car.fuel_car), price_car(_car.price_car), model_car(_car.model_car){
 
   problems_car.clear();
   for(auto it : _car.problems_car){
     problems_car.push_back(it);
   }
-
-  // cout << "-------------------------------------------" << endl;
-  // cout << "Copy Car" << endl;
-  // cout << "-------------------------------------------" << endl;
-  // cout << "ID: " << ID_car << endl;
-  // cout << "Model: " << model_car << endl;
-  // cout << "Price: " << price_car << endl;
-  // cout << "Production Year: " << production_year_car << endl;
-  // cout << "Power Supply: " << power_supply_car << endl;
-  // cout << "Color (HEX): " << color_car << endl;
-  // cout << "Size (mm): " << size_car << endl;
-  // cout << endl << "-------------------------------------------" << endl;
 }
 
-Car::~Car(){
-//   cout << "-------------------------------------------" << endl;
-//   cout << "Deleting Car" << endl;
-//   cout << "-------------------------------------------" << endl;
-//   cout << "ID: " << ID_car << endl;
-//   cout << "Model: " << model_car << endl;
-//   cout << "Price: " << price_car << endl;
-//   cout << "Production Year: " << production_year_car << endl;
-//   cout << "Power Supply: " << power_supply_car << endl;
-//   cout << "Color (HEX): " << color_car << endl;
-//   cout << "Size (mm): " << size_car << endl;
-//   cout << endl << "-------------------------------------------" << endl;
+void Car::add_problem(const Problem& _p){
+  
+  for(auto p : problems_car) {
+    if(*p == _p) {
+      cout << "Problem already in!" << endl;
+
+      return;
+    } 
+  }
+
+  problems_car.push_back(new Problem(_p));
 }
 
 bool Car::remove_problems() {

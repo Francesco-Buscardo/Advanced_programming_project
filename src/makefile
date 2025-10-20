@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLGS = -std=c++11 -W
-ARGS = $(wildcard *.cc ./Concessionaria/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc)
+ARGS = $(wildcard *.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc)
 EXEC = concessionaria
 
 compile:

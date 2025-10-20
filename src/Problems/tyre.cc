@@ -2,9 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Tyre::Tyre(): Problem(2){
+Tyre::Tyre(): Problem(){
 }
 
-bool Tyre::delete_problem(){
-  return true;
+Tyre::Tyre(const Problem_code_t& _c): Problem(_c){
 }

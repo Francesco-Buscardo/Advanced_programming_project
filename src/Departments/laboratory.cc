@@ -4,16 +4,18 @@
 #include <set>
 using namespace std;
 
-Laboratory::Laboratory(string _id) : ID_laboratory(_id), under_maintenance_cars(), available_mechanics(){
+int Laboratory::count_labs = 0;
+
+Laboratory::Laboratory(): Department(), ID_laboratory(++count_labs), under_maintenance_cars(), available_mechanics(){
 }
 
-Laboratory::Laboratory(const Laboratory& _lab) : Concessionaria(_lab), ID_laboratory(_lab.ID_laboratory), under_maintenance_cars(_lab.under_maintenance_cars), available_mechanics(_lab.available_mechanics){
+Laboratory::Laboratory(const Laboratory& _lab) : Department(_lab), ID_laboratory(_lab.ID_laboratory), under_maintenance_cars(_lab.under_maintenance_cars), available_mechanics(_lab.available_mechanics){
 }
 
 Laboratory::~Laboratory(){
 }
 
-void Laboratory::add_car(const Car& _car){//add car to under_maintenace_cars
+bool Laboratory::add_car(const Car& _car){
   
   auto it = under_maintenance_cars.find(_car);
 
@@ -24,7 +26,7 @@ void Laboratory::add_car(const Car& _car){//add car to under_maintenace_cars
   }
 }  
 
-void Laboratory::remove_car(const Car& _car){//remove car from under_maintenace_cars
+bool Laboratory::remove_car(const Car& _car){
   
   auto it = under_maintenance_cars.find(_car);
 
@@ -34,6 +36,14 @@ void Laboratory::remove_car(const Car& _car){//remove car from under_maintenace_
     cout << "Car already retired!" << endl;
   }
 }
+
+bool add_employee(const Employee& _empl){}
+ 
+bool remove_employee(const Employee& _empl){}
+
+Car find_car(const Car& _car){}
+
+bool add_car_to_maintenance(Car& _car){}
 
 bool Laboratory::fix_car(Car& _car) {
 
@@ -58,7 +68,8 @@ bool Laboratory::fix_car(Car& _car) {
   }
 }
 
-void Laboratory::add_mechanic(const Mechanic& _mech){
+bool Laboratory::add_mechanic(const Mechanic& _mech){
+
   auto it = available_mechanics.find(_mech);
 
   if(it == available_mechanics.end()) {
@@ -67,3 +78,5 @@ void Laboratory::add_mechanic(const Mechanic& _mech){
     cout << "Mechanic already insert!" << endl;
   }
 }
+
+bool remove_mechanic(const Mechanic& _mech){}

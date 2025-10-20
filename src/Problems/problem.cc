@@ -2,5 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Problem::Problem(int _c): problem_code(_c){
+Problem::Problem(): Problem(ENGINE){
+}
+
+Problem::Problem(const Problem_code_t& _c): Problem(_c){
 }

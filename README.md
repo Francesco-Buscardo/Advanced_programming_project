@@ -8,5 +8,4 @@ L'autoconcessionaria fornirà assistenza ai clienti tramite officina, che dovrà
 
 
 Compiler: std=c++11
-Executable: src/start
 

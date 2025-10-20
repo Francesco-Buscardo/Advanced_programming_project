@@ -19,9 +19,14 @@ ostream& operator <<(ostream& os, const Mechanic& _mech);
 ostream& operator <<(ostream& os, const Rental& _ren);
 ostream& operator <<(ostream& os, const Shop& _shop);
 
-vector<Car>        init_cars();
-vector<Laboratory> init_labs(const vector<Car>& _car);
+// vector<Car>        init_cars();
+// vector<Laboratory> init_labs(const vector<Car>& _car);
+vector<Laboratory> init_labs();
 vector<Shop>       init_shops();
 vector<Rental>     init_rentals();
+
+void management_shop();
+void management_laboratory();
+void management_rental();
 
 #endif

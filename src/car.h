@@ -1,8 +1,8 @@
-#ifndef CAR_H
-#define CAR_H
+#ifndef __CAR_H__
+#define __CAR_H__
 
 #include "./Types/Date.h"
-#include "./Types/Power_supply.h"
+#include "./Types/fuel.h"
 #include "Problems/problem.h"
 #include <iostream>
 #include <string>
@@ -10,28 +10,27 @@
 using namespace std;
 
 class Car{
-  const string ID_car; //o targa
-  long double price_car;
-  const Date production_year_car;
-  const Power_supply power_supply_car;
-  const string color_car;
-  const vector<int> size_car; //u: mm
-  const string model_car;
+
+  static int       count_cars; 
+  const int        ID_car;  
+  const Fuel       fuel_car;       
+  long double      price_car;
+  const string     model_car;
   vector<Problem*> problems_car;
 
   public:
-    Car();                //default
-    Car(string _id, long double _price, Date _date, Power_supply _ps, string _color, vector<int> _size, string _model);  //params
-    Car(const Car& _car); //copy
-    ~Car();               //dist
+    Car();               
+    Car(const Fuel _fl, const long double _prc, const string _mdl);
+    Car(const Car& _car); 
+    ~Car() = default;               
 
-    //operator << per date - ps - car
-    friend ostream& operator <<(ostream& os, const Power_supply& _ps);
-    friend ostream& operator <<(ostream& os, const vector<int>& _size); 
+    //operator << per date - fl - car
+    friend ostream& operator <<(ostream& os, const Fuel& _fl);
     friend ostream& operator <<(ostream& os, const Car& _car);
   	bool operator <(const Car& _car) const;
 
-    bool remove_problems();
-  };
+    bool add_problem(const Problem& _p);
+    bool remove_problem(const Problem& _p);
+};
 
 #endif

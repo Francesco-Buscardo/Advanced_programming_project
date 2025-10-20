@@ -1,17 +1,18 @@
-#ifndef DATE_H
-#define DATE_H
+#ifndef __DATE_H__
+#define __DATE_H__
 
 #include <iostream>
 using namespace std;
 
 class Date {
-  int dd;
-  int mm; 
-  int yyyy;
+
+  const int dd;
+  const int mm; 
+  const int yyyy;
 
   public:
     Date();
-    Date(int _d, int _m, int _y);
+    Date(const int& _d, const int& _m, const int& _y);
     ~Date();
 
     friend ostream& operator<<(ostream& os, const Date& _date);

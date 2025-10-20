@@ -2,9 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Interior::Interior(): Problem(3){
+Interior::Interior(): Problem(){
 }
 
-bool Interior::delete_problem(){
-  return true;
+Interior::Interior(const Problem_code_t& _c): Problem(_c){
 }
