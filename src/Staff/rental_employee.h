@@ -13,7 +13,6 @@ class Rental_employee: public Employee{
     Rental_employee(const Rental_employee& _rempl);
     ~Rental_employee() override = default;
 
-    friend ostream& operator <<(ostream& os, const Rental_employee& _rempl);
     bool operator <(const Rental_employee& _rempl) const;
 };
 

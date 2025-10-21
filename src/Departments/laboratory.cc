@@ -15,60 +15,98 @@ Laboratory::Laboratory(const Laboratory& _lab) : Department(_lab), ID_laboratory
 Laboratory::~Laboratory(){
 }
 
-bool Laboratory::add_car(const Car& _car){
-  
-  auto it = under_maintenance_cars.find(_car);
+ostream& operator <<(ostream& os, const Laboratory& _lab){
+	
+	os << "-------------------------------------------" << endl
+     << "Lab " << "ID: " << _lab.ID_laboratory << endl
+     << "-------------------------------------------" << endl;
+	for(auto* it: _lab.cars) {
+		os << *it << endl;
+	}
+  for(auto it: _lab.under_maintenance_cars) {
+		os << *it << endl;
+	}
+  for(auto it: _lab.available_mechanics) {
+		os << *it << endl;
+	}
 
-  if(it == under_maintenance_cars.end()) {
-    under_maintenance_cars.insert(_car);  
-  } else {
-    cout << "Car already under maintenance!" << endl;
+	return os;
+}
+
+void Laboratory::add_car(Car* _car){
+  
+  auto it = cars.find(_car);
+
+  if(it == cars.end()) {
+    cars.insert(_car);  
   }
 }  
 
-bool Laboratory::remove_car(const Car& _car){
+void Laboratory::remove_car(Car* _car){
   
-  auto it = under_maintenance_cars.find(_car);
+  auto it = cars.find(_car);
 
-  if(it == under_maintenance_cars.end()) {
-    under_maintenance_cars.erase(_car);
-  } else {
-    cout << "Car already retired!" << endl;
+  if(it != under_maintenance_cars.end()) {
+    cars.erase(_car);
   }
 }
 
-bool add_employee(const Employee& _empl){}
+void Laboratory::add_employee(Employee* _empl){
+
+  auto it = employees.find(_empl);
+
+  if(it == employees.end()) {
+    employees.insert(_empl);
+  }
+}
  
-bool remove_employee(const Employee& _empl){}
+void Laboratory::remove_employee(Employee* _empl){
 
-Car find_car(const Car& _car){}
+  auto it = employees.find(_empl);
 
-bool add_car_to_maintenance(Car& _car){}
+  if(it != employees.end()) {
+    employees.erase(_empl);
+  }
+}
 
-bool Laboratory::fix_car(Car& _car) {
+Car* Laboratory::find_car(Car* _car){
+
+  auto it = cars.find(_car);
+
+  return *it;
+}
+
+void Laboratory::add_car_to_maintenance(Car* _car){
+
+  auto it = under_maintenance_cars.find(_car);
+
+  if(it == under_maintenance_cars.end()){
+    under_maintenance_cars.insert(_car);
+  }
+}
+
+void Laboratory::fix_car(Car* _car){
 
   if(available_mechanics.size() != 0) {
     auto it = available_mechanics.begin(); //doing a copy of the first available mechanic
-    auto mech = *it;
-    available_mechanics.erase(it);        //then erase the mechanic from the set
+    Employee* mech = *it;
 
-    //rimuovo tutti i problemi dalla macchina
-    if(_car.remove_problems()) {//rimosssi tutti i problemi tolgo la macchina dal lab
-      remove_car(_car);
+    remove_mechanic(mech);
 
-      available_mechanics.insert(*it);  //re-push the mechanic in the set
-
-      return true;
-    } else {
-      return false;
+    //remove problems from car
+    while(!_car->get_problems_car().empty()) {
+      _car->remove_problem();
     }
+    //then remove the car from under_maintenance_cars
+    remove_car(_car);
+
+    available_mechanics.insert(*it);  //re-push the mechanic in the set
   } else {
     cout << "Not available mechanics for repairing the car!" << endl;
-    return false;
   }
 }
 
-bool Laboratory::add_mechanic(const Mechanic& _mech){
+void Laboratory::add_mechanic(Employee* _mech){
 
   auto it = available_mechanics.find(_mech);
 
@@ -79,4 +117,13 @@ bool Laboratory::add_mechanic(const Mechanic& _mech){
   }
 }
 
-bool remove_mechanic(const Mechanic& _mech){}
+void Laboratory::remove_mechanic(Employee* _mech){
+  
+  auto it = available_mechanics.find(_mech);
+
+  if(it != available_mechanics.end()) {
+    available_mechanics.erase(_mech);
+  } else {
+    cout << "Mechanic already removed!" << endl;
+  }
+}

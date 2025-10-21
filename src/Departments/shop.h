@@ -2,13 +2,15 @@
 #define __SHOP_H__
 
 #include "Department.h"
+#include "../Customer/customer.h"
 #include <iostream>
 using namespace std;
 
 class Shop: public Department{
 
-  static int count_shops;
-  int        ID_shop;
+  static int                    count_shops;
+  int                           ID_shop;
+  vector<pair<Car*, Customer*>> sales;
 
   public:
     Shop();    
@@ -17,13 +19,14 @@ class Shop: public Department{
 
     friend ostream& operator <<(ostream& os, const Shop& _shop);
 
-
-    bool add_car         (const Car& _car)                     override;  //add car to cars
-		bool remove_car      (const Car& _car)                     override;  //remove car from cars
-    bool add_employee    (const Employee& _empl)               override;  //add employee to employees
-    bool remove_employee (const Employee& _empl)               override;  //remove employee from employees
-    Car  find_car        (const Car& _car)                     override;  //find the _car in cars       
-    void sell_to         (const Car& _car, const Customer& _c);           //sell the _car to _c and remove the _car from cars
+    void add_car         (Car* _car)                     override;  //add car to cars
+		void remove_car      (Car* _car)                     override;  //remove car from cars
+    void add_employee    (Employee* _empl)               override;  //add employee to employees
+    void remove_employee (Employee* _empl)               override;  //remove employee from employees
+    Car* find_car        (Car* _car)                     override;  //find the _car in cars       
+    void sell_to         (Car* _car, Customer* _c);                 //sell the _car to _c and remove the _car from cars
 };
+
+ostream& operator <<(ostream& os, const Shop& _shop);
 
 #endif

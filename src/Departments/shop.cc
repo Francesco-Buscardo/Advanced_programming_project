@@ -13,31 +13,76 @@ Shop::Shop(const Shop& _shop): Department(_shop), ID_shop(_shop.ID_shop){
 Shop::~Shop(){
 } 
 
-bool Shop::add_car(const Car& _car){
+ostream& operator <<(ostream& os, const Shop& _shop){
 
-  auto it = cars_for_sale.find(_car);
+	os << "-------------------------------------------" << endl
+     << "Shop " << "ID: " << _shop.ID_shop << endl
+     << "-------------------------------------------" << endl;
+	for(auto* it: _shop.cars) {
+		os << *it << endl;
+	}
+	for(auto it: _shop.sales) {
+		os << "Car: " << *(it.first) 
+			 << ", Customer: " << it.second << endl;
+	}
 
-  if(it == cars_for_sale.end()) {
-    cars_for_sale.insert(_car);
+	return os;
+}
+
+void Shop::add_car(Car* _car){
+
+  auto it = cars.find(_car);
+
+  if(it == cars.end()) {
+    cars.insert(_car);
   } else {
     cout << "Already in!" << endl;
   }
 }
 
-bool Shop::remove_car(const Car& _car){
-  auto it = cars_for_sale.find(_car);
+void Shop::remove_car(Car* _car){
+  
+  auto it = cars.find(_car);
 
-  if(it != cars_for_sale.end()) {
-    cars_for_sale.erase(_car);
+  if(it != cars.end()) {
+    cars.erase(_car);
   } else {
     cout << "Car Already sold!" << endl;
   }
 } 
 
-bool add_employee(const Employee& _empl){}
+void Shop::add_employee(Employee* _empl){
+  
+  auto it = employees.find(_empl);
 
-bool remove_employee(const Employee& _empl){}
+  if(it == employees.end()) {
+    employees.insert(_empl);
+  } else {
+    cout << "Employee already hired!" << endl;
+  }
+}
 
-Car  find_car(const Car& _car){}       
+void Shop::remove_employee(Employee* _empl){
+ 
+  auto it = employees.find(_empl);
 
-void sell_to(const Car& _car, const Customer& _c){}
+  if(it != employees.end()) {
+    employees.erase(_empl);
+  } else {
+    cout << "Employee not exits!" << endl;
+  }
+}
+
+Car* Laboratory::find_car(Car* _car){
+
+  auto it = cars.find(_car);
+
+  return *it;
+}       
+
+void Shop::sell_to(Car* _car, Customer* _c){
+
+  sales.push_back({_car, _c});
+
+  remove_car(_car);
+}

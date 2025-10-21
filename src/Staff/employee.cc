@@ -13,3 +13,15 @@ Employee::Employee(const string _name, const string _last, const int _age): ID_e
 
 Employee::Employee(const Employee& _empl): ID_employee(_empl.ID_employee), name_employee(_empl.name_employee), lastname_employee(_empl.lastname_employee), age_employee(_empl.age_employee){
 }
+
+ostream& operator <<(ostream& os, const Employee& _empl){
+	
+	os << "-------------------------------------------" << endl
+		 << "Mechanic " << "ID: " << _empl.ID_employee << endl
+		 << "-------------------------------------------" << endl
+		 << _empl.name_employee << " "
+		 << _empl.lastname_employee << ", "
+		 << _empl.age_employee;
+
+	return os;
+}

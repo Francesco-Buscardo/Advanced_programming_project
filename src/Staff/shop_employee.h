@@ -13,7 +13,6 @@ class Shop_employee: public Employee{
     Shop_employee(const Shop_employee& _sempl);
     ~Shop_employee() override = default;
 
-    friend ostream& operator <<(ostream& os, const Shop_employee& _sempl);
     bool operator <(const Shop_employee& _sempl) const;
 };
 

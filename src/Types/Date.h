@@ -15,7 +15,9 @@ class Date {
     Date(const int& _d, const int& _m, const int& _y);
     ~Date();
 
-    friend ostream& operator<<(ostream& os, const Date& _date);
+    friend ostream& operator <<(ostream& os, const Date& _date);
 };
+
+ostream& operator <<(ostream& os, const Date& _date);
 
 #endif

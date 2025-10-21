@@ -12,18 +12,47 @@ Customer::Customer(const string& _n, const string& _l, const int& _a): ID_custom
 Customer::Customer(const Customer& _c): ID_customer(_c.ID_customer), name_customer(_c.name_customer), lastname_customer(_c.lastname_customer), age_customer(_c.age_customer), rental_cars(_c.rental_cars), bought_cars(_c.bought_cars){
 }
 
-bool rent_car(const Car& _car){
+ostream& operator <<(ostream& os, const Customer& _c){
 
+	os << "Customer ID: " << _c.ID_customer; 
+
+	return os; 
 }
 
-bool return_car(const Car& _car){
+void Customer::rent_car(Car* _car){
 
+  rental_cars.push_back(_car);
+
+  cout << "Car rental!" << endl;
 }
 
-bool buy_car(const Car& _car){
+void Customer::return_car(Car* _car){
 
+  for(auto it = rental_cars.begin(); it != rental_cars.end();  ++it) {
+    if(*it == _car) {
+      rental_cars.erase(it);
+      cout << "Car returned!" << endl;
+    }
+  }
+
+  cout << "Car didnt rental!" << endl;
 }
 
-bool sell_car(const Car& _car){
+void Customer::buy_car(Car* _car){
+  
+  bought_cars.push_back(_car);
 
+  cout << "Car bought!" << endl;
+}
+
+void Customer::sell_car(Car* _car){
+
+  for(auto it = bought_cars.begin(); it != bought_cars.end();  ++it) {
+    if(*it == _car) {
+      bought_cars.erase(it);
+      cout << "Car sold!" << endl;
+    }
+  }
+
+  cout << "Car didnt bought!" << endl;
 }

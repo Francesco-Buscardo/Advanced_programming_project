@@ -4,6 +4,7 @@
 #include "./Types/Date.h"
 #include "./Types/fuel.h"
 #include "Problems/problem.h"
+#include "./Departments/laboratory.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,12 +26,17 @@ class Car{
     ~Car() = default;               
 
     //operator << per date - fl - car
-    friend ostream& operator <<(ostream& os, const Fuel& _fl);
-    friend ostream& operator <<(ostream& os, const Car& _car);
-  	bool operator <(const Car& _car) const;
+    friend ostream& operator << (ostream& os, const Fuel& _fl);
+    friend ostream& operator << (ostream& os, const Car& _car);
+  	bool            operator <  (const Car* _car) const;
+    friend bool     operator == (const Car& _sx, const Car& _dx);
 
-    bool add_problem(const Problem& _p);
-    bool remove_problem(const Problem& _p);
+    void               add_problem      (Problem* _p);
+    void               remove_problem   ();
+    vector<Problem*>&  get_problems_car ();
 };
+
+bool operator ==(const Car& _sx, const Car& _dx);
+
 
 #endif

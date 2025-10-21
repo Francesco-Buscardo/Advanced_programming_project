@@ -13,7 +13,6 @@ class Mechanic: public Employee{
     Mechanic(const Mechanic& _mech);
     ~Mechanic() override = default;
 
-    friend ostream& operator <<(ostream& os, const Mechanic& _mech);
     bool operator <(const Mechanic& _mech) const;
 };
 

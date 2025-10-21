@@ -20,7 +20,10 @@ class Employee{
     Employee(const Employee& _empl);
     virtual ~Employee();
 
-    virtual bool operator <(const Employee& _empl) const = 0;
+    virtual bool operator     < (const Employee& _empl) const = 0;
+    friend  ostream& operator <<(ostream& os, const Employee& _empl);
 };
+
+ostream& operator <<(ostream& os, const Employee& _empl);
 
 #endif

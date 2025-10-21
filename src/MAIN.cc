@@ -1,6 +1,7 @@
 #include "main.h"
 #include "concessionaria.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main(int argc, char *argv[]){
@@ -9,7 +10,13 @@ int main(int argc, char *argv[]){
   cout << "Initializing Concessionaria . . ." << endl;
   cout << "-------------------------------------------" << endl;
   
-  Concessionaria concessionaria(argv[1]);
+  string name;
+  if(argc == 1) {
+    name = "My Concessioanria";
+  } else {
+    name = argv[1];
+  }
+  Concessionaria concessionaria(name);
 
   // vector<Car>        conc_cars     = init_cars();
   // vector<Laboratory> conc_labs     = init_labs(conc_cars);
