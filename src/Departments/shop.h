@@ -19,12 +19,13 @@ class Shop: public Department{
 
     friend ostream& operator <<(ostream& os, const Shop& _shop);
 
-    void add_car         (Car* _car)                     override;  //add car to cars
-		void remove_car      (Car* _car)                     override;  //remove car from cars
-    void add_employee    (Employee* _empl)               override;  //add employee to employees
-    void remove_employee (Employee* _empl)               override;  //remove employee from employees
-    Car* find_car        (Car* _car)                     override;  //find the _car in cars       
-    void sell_to         (Car* _car, Customer* _c);                 //sell the _car to _c and remove the _car from cars
+    void add_car           (Car* _car)                     override;  //add car to cars
+		void remove_car        (Car* _car)                     override;  //remove car from cars
+    void add_employee      (Employee* _empl)               override;  //add employee to employees
+    void remove_employee   (Employee* _empl)               override;  //remove employee from employees
+    Car* find_car_by_ID    (const int& _id)                override;  //find the _car in cars by id
+    Car* find_car_by_model (const string& _m)              override;  //find the _car in cars by model 
+    void sell_to           (Car* _car, Customer* _c);                 //sell the _car to _c and remove the _car from cars
 };
 
 ostream& operator <<(ostream& os, const Shop& _shop);

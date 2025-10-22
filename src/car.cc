@@ -55,3 +55,13 @@ vector<Problem*>& Car::get_problems_car(){
 
   return problems_car;
 }
+
+int Car::get_ID(){
+  
+  return ID_car;
+}
+
+string Car::get_model(){
+  
+  return model_car;
+}

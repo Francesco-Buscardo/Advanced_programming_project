@@ -17,11 +17,13 @@ class Employee{
   public:
     Employee();
     Employee(const string _name, const string _last, const int _age);
+    Employee(const int _id, const string _name, const string _last, const int _age);
     Employee(const Employee& _empl);
     virtual ~Employee();
 
-    virtual bool operator     < (const Employee& _empl) const = 0;
+    virtual bool     operator < (const Employee& _empl) const = 0;
     friend  ostream& operator <<(ostream& os, const Employee& _empl);
+    int              get_ID     () const;
 };
 
 ostream& operator <<(ostream& os, const Employee& _empl);

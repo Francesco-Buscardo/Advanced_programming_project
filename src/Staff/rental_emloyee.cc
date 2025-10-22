@@ -12,7 +12,7 @@ Rental_employee::Rental_employee(const string _name, const string _last, const i
 Rental_employee::Rental_employee(const Rental_employee& _rempl): Employee(_rempl){
 }
 
-bool Rental_employee::operator <(const Rental_employee& _rempl) const{
+bool Rental_employee::operator <(const Employee& _rempl) const{
   
-  return this->ID_employee <= _rempl.ID_employee;
+  return this->ID_employee < _rempl.get_ID();
 }

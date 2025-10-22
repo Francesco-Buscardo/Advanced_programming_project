@@ -13,7 +13,7 @@ class Rental_employee: public Employee{
     Rental_employee(const Rental_employee& _rempl);
     ~Rental_employee() override = default;
 
-    bool operator <(const Rental_employee& _rempl) const;
+    bool operator <(const Employee& _rempl) const override;
 };
 
 #endif

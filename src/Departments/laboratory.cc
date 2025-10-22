@@ -69,11 +69,26 @@ void Laboratory::remove_employee(Employee* _empl){
   }
 }
 
-Car* Laboratory::find_car(Car* _car){
+Car* Laboratory::find_car_by_ID(const int& _id){
 
-  auto it = cars.find(_car);
+  for(auto it = cars.begin(); it != cars.end(); ++it){
+    if(_id == (*it)->get_ID()) {
+      return *it;
+    }
+  }
 
-  return *it;
+  return nullptr;
+}
+
+Car* Laboratory::find_car_by_model(const string& _m){
+
+  for(auto it = cars.begin(); it != cars.end(); ++it){
+    if(_m == (*it)->get_model()) {
+      return *it;
+    }
+  }
+
+  return nullptr;
 }
 
 void Laboratory::add_car_to_maintenance(Car* _car){

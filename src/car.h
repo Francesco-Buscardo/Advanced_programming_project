@@ -34,6 +34,8 @@ class Car{
     void               add_problem      (Problem* _p);
     void               remove_problem   ();
     vector<Problem*>&  get_problems_car ();
+    int                get_ID           ();
+    string             get_model        ();
 };
 
 bool operator ==(const Car& _sx, const Car& _dx);
