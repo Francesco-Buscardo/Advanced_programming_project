@@ -13,3 +13,18 @@ ostream& operator <<(ostream& os, const Date& _date){
   os << _date.dd << "." << _date.mm << "." << _date.yyyy;
   return os;
 }
+
+int Date::get_day() const{
+
+  return this->dd; 
+}
+
+int Date::get_month() const{
+
+  return this->mm; 
+}
+
+int Date::get_year() const{
+
+  return this->yyyy;
+}

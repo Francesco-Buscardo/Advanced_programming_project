@@ -2,6 +2,7 @@
 #define __CUSTOMER_H__
 
 #include "../car.h"
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -23,11 +24,13 @@ class Customer{
     ~Customer() = default;
 
     friend ostream& operator <<(ostream& os, const Customer& _c);
+    bool            operator < (const Customer* _car) const;
 
     void rent_car   (Car* _car); //add _car to rental_car
     void return_car (Car* _car); //remove _car from rental_car
     void buy_car    (Car* _car); //add _car to bought_cars
     void sell_car   (Car* _car); //remove _car from bought_cars
+    int  get_ID     () const;
 };
 
 ostream& operator <<(ostream& os, const Customer& _c);

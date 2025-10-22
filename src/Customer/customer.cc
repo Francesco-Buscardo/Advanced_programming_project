@@ -1,4 +1,5 @@
 #include "customer.h"
+#include <iostream>
 #include <string>
 #include <set>
 using namespace std;
@@ -17,6 +18,11 @@ ostream& operator <<(ostream& os, const Customer& _c){
 	os << "Customer ID: " << _c.ID_customer; 
 
 	return os; 
+}
+
+bool Customer::operator <(const Customer* _c) const {
+  
+  return this->ID_customer < _c->ID_customer;
 }
 
 void Customer::rent_car(Car* _car){
@@ -55,4 +61,9 @@ void Customer::sell_car(Car* _car){
   }
 
   cout << "Car didnt bought!" << endl;
+}
+
+int  Customer::get_ID() const{
+
+  return this->ID_customer;
 }

@@ -1,6 +1,8 @@
 #include "rental.h"
 #include <iostream>
 #include <set>
+#include <utility>
+#include <ctime>
 using namespace std;
 
 int Rental::count_rentals = 0;
@@ -116,18 +118,40 @@ void Rental::register_return(Customer* _c, Date _d){
   }
 }
 
-int Rental::calculate_rental(Customer* _c, Date _d){
+int Rental::get_rate() const{
 
-  //10 euro x hour
-  auto it = rentals_open.find({_c, _d});
+  return this->rate;
+}                            
+
+
+int Rental::diff_in_days(const Date& _start, const Date& _today) const {
+  tm a = {0,0,0, _start.get_day(), _start.get_month() - 1, _start.get_year() - 1900};
+  tm b = {0,0,0, _today.get_day(), _today.get_month() - 1, _today.get_year() - 1900};
+
+  time_t aa = mktime(&a);
+  time_t bb = mktime(&b);
+
+  return static_cast<int>(difftime(bb, aa) / (60 * 60 * 24));
+}
+
+
+int Rental::calculate_rental(Customer* _c, const Date& _d){
+
+  auto it = rentals_open.begin();
+  while(it != rentals_open.end()) {
+    if(it->first == _c) {
+      break; 
+    }
+    ++it;
+  }
 
   if(it == rentals_open.end()) {
     return 0;
   } else {
-    int c; 
+    Date start_rental = it->second;
+    int  days         = diff_in_days(start_rental, _d);
+    int  hours        = days * 24;
 
-    
-
-    return c;
+    return hours * rate;
   }
 }

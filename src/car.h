@@ -38,7 +38,9 @@ class Car{
     string             get_model        ();
 };
 
-bool operator ==(const Car& _sx, const Car& _dx);
+ostream& operator << (ostream& os, const Fuel& _fl);
+ostream& operator << (ostream& os, const Car& _car);
+bool     operator == (const Car& _sx, const Car& _dx);
 
 
 #endif

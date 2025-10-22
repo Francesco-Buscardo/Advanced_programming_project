@@ -1,11 +1,13 @@
 #include "main.h"
 #include "Types/fuel.h"
+#include "Types/Date.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 template<typename T>
@@ -189,6 +191,68 @@ void fix_car(Laboratory& _lab){
 	_lab.fix_car(c);
 }
 
+void register_rental(Rental& _rental){
+
+	int tmp_id; 
+
+	cout << "ID customer: " << endl;
+	cin  >> tmp_id;
+
+	Customer* c = _rental.get_customer(tmp_id);
+
+	if(c == nullptr) {
+		cout << "Customer non registered!" << endl; 
+		return; 
+	} else {
+		_rental.register_rental(c);
+	}
+}
+
+void register_return(Rental& _rental){
+
+	int tmp_id; 
+
+	cout << "ID customer: " << endl;
+	cin  >> tmp_id;
+
+	Customer* c = _rental.get_customer(tmp_id);
+
+	if(c == nullptr) {
+		cout << "Customer non registered!" << endl; 
+		return; 
+	} else {
+		time_t now = time(nullptr);
+		tm* n      = localtime(&now);
+
+		Date today(n->tm_mday, n->tm_mon, n->tm_year);
+
+		_rental.register_return(c, today);
+	}
+}
+
+void calculate_return(Rental& _rental){
+
+	int tmp_id; 
+
+	cout << "ID customer: " << endl;
+	cin  >> tmp_id;
+
+	Customer* c = _rental.get_customer(tmp_id);
+
+	if(c == nullptr) {
+		cout << "Customer non registered!" << endl; 
+		return; 
+	} else {
+		time_t now = time(nullptr);
+		tm* n      = localtime(&now);
+
+		Date today(n->tm_mday, n->tm_mon, n->tm_year);
+
+		cout << "Cost: " << _rental.calculate_rental(c, today) << endl;
+	}
+
+}
+
 void management_shop(Shop& _shop){
 
 	int choice;
@@ -323,10 +387,13 @@ void management_rental(Rental& _rental){
 			remove_car<Rental>(_rental);
 			break;
 		case 4:
+			register_rental(_rental);
 			break;
 		case 5:
+			register_return(_rental);
 			break;
 		case 6:
+			calculate_rental(_rental);
 			break;
 		case 7:
 			find_car<Rental>(_rental);

@@ -34,7 +34,7 @@ ostream& operator <<(ostream& os, const Car& _car){
 
 bool Car::operator <(const Car* _car) const {
   
-  return this->ID_car <= _car->ID_car;
+  return this->ID_car < _car->ID_car;
 }
 
 bool operator ==(const Car& _sx, const Car& _dx){

@@ -13,6 +13,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ctime>
 using namespace std;
 
 // vector<Car>        init_cars();
@@ -37,6 +38,10 @@ void add_employee          (T& _x);
 template<typename T, typename K>
 void remove_employee       (T& _x);
 void fix_car               (Laboratory& _lab);
+void register_rental       (Rental& _rental);
+void register_return       (Rental& _rental);
+void calculate_return      (Rental& _rental);
+
 void management_shop       (Shop& _shop);
 void management_laboratory (Laboratory& _lab);
 void management_rental     (Rental& _rental);
