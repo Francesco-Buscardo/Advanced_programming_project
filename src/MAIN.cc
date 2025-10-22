@@ -16,13 +16,9 @@ int main(int argc, char *argv[]){
   } else {
     name = argv[1];
   }
-  Concessionaria concessionaria(name);
+  Concessionaria c(name);
 
-  // vector<Car>        conc_cars     = init_cars();
-  // vector<Laboratory> conc_labs     = init_labs(conc_cars);
-  // vector<Laboratory> conc_labs     = init_labs();
-  // vector<Shop>       conc_shops    = init_shops();
-  // vector<Rental>     conc_rentals  = init_rentals();
+  init_code(c);
 
   cout << "-------------------------------------------" << endl;
   cout << "Stop Initialization!" << endl;
@@ -47,13 +43,13 @@ int main(int argc, char *argv[]){
         return 0;
         break;
       case 1:
-        management_shop();
+        management_shop(c.get_shop());
         break;
       case 2:
-        management_rental();
+        management_rental(c.get_rental());
         break;
       case 3:
-        management_laboratory();
+        management_laboratory(c.get_laboratory());
         break;
       default: cout << "Wrong choice!" << endl;
         break;

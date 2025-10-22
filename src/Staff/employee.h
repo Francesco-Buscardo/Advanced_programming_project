@@ -23,7 +23,8 @@ class Employee{
 
     virtual bool     operator < (const Employee& _empl) const = 0;
     friend  ostream& operator <<(ostream& os, const Employee& _empl);
-    int              get_ID     () const;
+    
+    int get_ID() const;
 };
 
 ostream& operator <<(ostream& os, const Employee& _empl);

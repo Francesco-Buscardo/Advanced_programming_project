@@ -17,9 +17,9 @@ class Date {
 
     friend ostream& operator <<(ostream& os, const Date& _date);
 
-    int             get_day   () const;
-    int             get_month () const;
-    int             get_year  () const;
+    int get_day   () const;
+    int get_month () const;
+    int get_year  () const;
 };
 
 ostream& operator <<(ostream& os, const Date& _date);

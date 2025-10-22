@@ -1,6 +1,4 @@
 #include "main.h"
-#include "Types/fuel.h"
-#include "Types/Date.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -393,7 +391,7 @@ void management_rental(Rental& _rental){
 			register_return(_rental);
 			break;
 		case 6:
-			calculate_rental(_rental);
+			calculate_return(_rental);
 			break;
 		case 7:
 			find_car<Rental>(_rental);
@@ -408,6 +406,15 @@ void management_rental(Rental& _rental){
 			break;
 		}
 	}
+}
+
+void init_code(Concessionaria& _c){
+	
+	// vector<Car>        conc_cars     = init_cars();
+  // vector<Laboratory> conc_labs     = init_labs(conc_cars);
+  // vector<Laboratory> conc_labs     = init_labs();
+  // vector<Shop>       conc_shops    = init_shops();
+  // vector<Rental>     conc_rentals  = init_rentals();
 }
 
 /*

@@ -33,14 +33,13 @@ class Car{
 
     void               add_problem      (Problem* _p);
     void               remove_problem   ();
-    vector<Problem*>&  get_problems_car ();
-    int                get_ID           ();
-    string             get_model        ();
+    vector<Problem*>   get_problems_car () const;
+    int                get_ID           () const;
+    string             get_model        () const;
 };
 
 ostream& operator << (ostream& os, const Fuel& _fl);
 ostream& operator << (ostream& os, const Car& _car);
 bool     operator == (const Car& _sx, const Car& _dx);
-
 
 #endif

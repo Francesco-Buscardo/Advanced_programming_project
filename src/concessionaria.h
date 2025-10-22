@@ -21,12 +21,15 @@ class Concessionaria{
     Concessionaria(const Concessionaria& _c); 
     ~Concessionaria() = default;
      
-    bool add_shop          (const Shop& _x);
-    bool add_laboratory    (const Laboratory& _x);
-    bool add_rental        (const Rental& _x);
-    bool remove_shop       (const Shop& _x);
-    bool remove_laboratory (const Laboratory& _x);
-    bool remove_rental     (const Rental& _x);
+    bool        add_shop          (const Shop& _x);
+    bool        add_laboratory    (const Laboratory& _x);
+    bool        add_rental        (const Rental& _x);
+    bool        remove_shop       (const Shop& _x);
+    bool        remove_laboratory (const Laboratory& _x);
+    bool        remove_rental     (const Rental& _x);
+    Shop&       get_shop          () const;
+    Laboratory& get_laboratory    () const;
+    Rental&     get_rental        () const;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef __MAIN_H__ 
 #define __MAIN_H__
 
+#include "concessionaria.h"
 #include "car.h"
 #include "Departments/laboratory.h"
 #include "Departments/rental.h"
@@ -9,18 +10,13 @@
 #include "Staff/rental_employee.h"
 #include "Staff/shop_employee.h"
 #include "Types/fuel.h"
+#include "Types/Date.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <ctime>
 using namespace std;
-
-// vector<Car>        init_cars();
-// vector<Laboratory> init_labs(const vector<Car>& _car);
-// vector<Laboratory> init_labs();
-// vector<Shop>       init_shops();
-// vector<Rental>     init_rentals();
 
 template<typename T>
 Car* find_by_id            (T& _x);
@@ -45,5 +41,12 @@ void calculate_return      (Rental& _rental);
 void management_shop       (Shop& _shop);
 void management_laboratory (Laboratory& _lab);
 void management_rental     (Rental& _rental);
+
+// vector<Car>        init_cars();
+// vector<Laboratory> init_labs(const vector<Car>& _car);
+// vector<Laboratory> init_labs();
+// vector<Shop>       init_shops();
+// vector<Rental>     init_rentals();
+void init_code(Concessionaria& _c);
 
 #endif

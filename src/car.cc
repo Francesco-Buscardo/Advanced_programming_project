@@ -51,17 +51,17 @@ void Car::remove_problem() {
   problems_car.pop_back();
 }
 
-vector<Problem*>& Car::get_problems_car(){
+vector<Problem*> Car::get_problems_car() const{
 
   return problems_car;
 }
 
-int Car::get_ID(){
+int Car::get_ID() const{
   
   return ID_car;
 }
 
-string Car::get_model(){
+string Car::get_model() const{
   
   return model_car;
 }
