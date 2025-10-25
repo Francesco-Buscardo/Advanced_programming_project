@@ -1,1 +1,2 @@
-[] logica lista customer in Department
+[] ridefinire operator << in department
+[] fare metodi i concessionaria

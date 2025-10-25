@@ -4,6 +4,8 @@
 #include <set>
 using namespace std;
 
+int Customer::count_customer = 0;
+
 Customer::Customer(): ID_customer(-1), name_customer(""), lastname_customer(""), age_customer(0), rental_cars(), bought_cars(){
 }
 
@@ -11,6 +13,19 @@ Customer::Customer(const string& _n, const string& _l, const int& _a): ID_custom
 }
 
 Customer::Customer(const Customer& _c): ID_customer(_c.ID_customer), name_customer(_c.name_customer), lastname_customer(_c.lastname_customer), age_customer(_c.age_customer), rental_cars(_c.rental_cars), bought_cars(_c.bought_cars){
+}
+
+Customer::~Customer(){
+
+  for(auto c : rental_cars) {
+    delete c;
+  }
+  rental_cars.clear();
+  
+  for(auto c : bought_cars) {
+    delete c;
+  }
+  bought_cars.clear();
 }
 
 ostream& operator <<(ostream& os, const Customer& _c){
@@ -36,6 +51,7 @@ void Customer::return_car(Car* _car){
 
   for(auto it = rental_cars.begin(); it != rental_cars.end();  ++it) {
     if(*it == _car) {
+      delete *it;
       rental_cars.erase(it);
       cout << "Car returned!" << endl;
     }
@@ -55,6 +71,7 @@ void Customer::sell_car(Car* _car){
 
   for(auto it = bought_cars.begin(); it != bought_cars.end();  ++it) {
     if(*it == _car) {
+      delete *it;
       bought_cars.erase(it);
       cout << "Car sold!" << endl;
     }

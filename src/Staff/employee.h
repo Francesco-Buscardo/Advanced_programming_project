@@ -21,8 +21,10 @@ class Employee{
     Employee(const Employee& _empl);
     virtual ~Employee();
 
-    virtual bool     operator < (const Employee& _empl) const = 0;
-    friend  ostream& operator <<(ostream& os, const Employee& _empl);
+    virtual bool     minor_operator (const Employee& _empl) const;
+            bool     operator <     (const Employee& _empl) const;
+    virtual ostream& print_operator (ostream& os) const;
+    friend  ostream& operator <<    (ostream& os, const Employee& _empl);
     
     int get_ID() const;
 };

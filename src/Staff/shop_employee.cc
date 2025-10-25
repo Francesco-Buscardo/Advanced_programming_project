@@ -14,8 +14,3 @@ Shop_employee::Shop_employee(const int _id, const string _name, const string _la
 
 Shop_employee::Shop_employee(const Shop_employee& _sempl): Employee(_sempl){
 }
-
-bool Shop_employee::operator <(const Employee& _sempl) const{
-  
-  return this->ID_employee < _sempl.get_ID();
-}

@@ -1,10 +1,19 @@
 CXX = g++
-CXXFLGS = -std=c++11 -W
-ARGS = $(wildcard *.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc)
+CXXFLAGS = -std=c++11 -Wall
+SRC = $(wildcard *.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc ./Customer/*.cc)
+OBJ = $(SRC:.cc=.o)
 EXEC = concessionaria
 
-compile:
-	@$(CXX) $(CXXFLGS) $(ARGS) -o $(EXEC)
-	@echo "do: make run NAME_CONCESSIONARIA=<name>"
-run: compile
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+compile: all
+	@echo "Build completed"
+
+run: all
 	@./$(EXEC) $(NAME_CONCESSIONARIA)

@@ -17,16 +17,34 @@ Employee::Employee(const int _id, const string _name, const string _last, const 
 Employee::Employee(const Employee& _empl): ID_employee(_empl.ID_employee), name_employee(_empl.name_employee), lastname_employee(_empl.lastname_employee), age_employee(_empl.age_employee){
 }
 
-ostream& operator <<(ostream& os, const Employee& _empl){
+Employee::~Employee(){
+}
+
+bool Employee::minor_operator(const Employee& _empl) const{
 	
+	return get_ID() < _empl.get_ID();
+}
+
+bool Employee::operator <(const Employee& _empl) const{
+
+	return minor_operator(_empl);
+}
+
+ostream& Employee:: print_operator(ostream& os) const{
+
 	os << "-------------------------------------------" << endl
-		 << "Mechanic " << "ID: " << _empl.ID_employee << endl
+		 << "Mechanic " << "ID: " << ID_employee << endl
 		 << "-------------------------------------------" << endl
-		 << _empl.name_employee << " "
-		 << _empl.lastname_employee << ", "
-		 << _empl.age_employee;
+		 << name_employee << " "
+		 << lastname_employee << ", "
+		 << age_employee;
 
 	return os;
+}
+
+ostream& operator <<(ostream& os, const Employee& _empl){
+
+	return _empl.print_operator(os);
 }
 
 int Employee::get_ID() const { 

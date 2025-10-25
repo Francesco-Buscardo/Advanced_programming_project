@@ -10,7 +10,7 @@ class Interior: public Problem{
   public:
     Interior(); 
     Interior(const Problem_code_t& _c);
-    ~Interior() override = default;
+    ~Interior() = default;
 };
 
 #endif

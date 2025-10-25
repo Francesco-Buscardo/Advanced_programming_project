@@ -8,11 +8,12 @@
 #include <set>
 using namespace std;
 
+class Car;
+
 class Laboratory: public Department{
 	
 	static int      count_labs;
 	int             ID_laboratory;
-	set<Car*>       under_maintenance_cars;
 	set<Employee*>  available_mechanics;    //available mechanics for repairing cars
 
 	public: 
@@ -20,18 +21,13 @@ class Laboratory: public Department{
 		Laboratory(const Laboratory& _lab);
 		~Laboratory() override;
 	
-		friend ostream& operator <<(ostream& so, const Laboratory& _lab);
+		virtual ostream& print_operator (ostream& os) const;
+		friend  ostream& operator <<    (ostream& os, const Laboratory& _lab);
 
-		void add_car                (Car* _car)        override;  //add car to cars
-		void remove_car             (Car* _car)        override;  //remove car cars
-		void add_employee           (Employee* _empl)  override;  //add an employee to employees
-    void remove_employee        (Employee* _empl)  override;  //remove an employee from employees
-		Car* find_car_by_ID         (const int& _id)   override;  //find the _car in cars by id
-    Car* find_car_by_model      (const string& _m) override;  //find the _car in cars by model
-		void add_car_to_maintenance (Car* _car);                  //add car to under_maintenance_cars
-		void fix_car                (Car* _car);                  //remove car from under_maintenance_cars
-		void add_mechanic           (Employee* _mech);  					//add mechanic to available_mechanics
-		void remove_mechanic        (Employee* _mech);  					//rmeove mechanic to available_mechanics	
+		void fix_car                (Car* _car);                        //remove car from under_maintenance_cars
+		void add_mechanic           (Employee* _mech);  					      //add mechanic to available_mechanics
+		void remove_mechanic        (Employee* _mech);  					      //rmeove mechanic to available_mechanics
+	  int  get_ID                 ()                 const override;
 };
 
 ostream& operator <<(ostream& os, const Laboratory& _lab);

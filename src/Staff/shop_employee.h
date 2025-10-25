@@ -7,14 +7,13 @@
 using namespace std;
 
 class Shop_employee: public Employee{
+  
   public: 
     Shop_employee(); 
     Shop_employee(const string _name, const string _last, const int _age);
     Shop_employee(const int _id, const string _name, const string _last, const int _age);
     Shop_employee(const Shop_employee& _sempl);
     ~Shop_employee() override = default;
-
-    bool operator <(const Employee& _sempl) const override;
 };
 
 #endif

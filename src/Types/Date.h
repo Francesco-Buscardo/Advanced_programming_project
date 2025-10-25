@@ -13,7 +13,7 @@ class Date {
   public:
     Date();
     Date(const int& _d, const int& _m, const int& _y);
-    ~Date();
+    ~Date() = default;
 
     friend ostream& operator <<(ostream& os, const Date& _date);
 

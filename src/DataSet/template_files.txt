@@ -1,30 +1,13 @@
 FILE: cars.txt, rental_cars.txt, shop_cars.txt
 ID_car
 price_car
-dd
-mm
-yyyy
-power_supply_car
-color_car
-x
-y
-z
+fuel
 model_car
 ;
 FILE: labs.txt
 ID_laboratory
 n //number of cars
 m //number of mechanics
-;
-FILE: mechanics.txt
-ID_employee
-name_employee
-lastname_employee
-age_employee
-;
-FILE: labs.txt
-ID_laboratory
-n_cars
 ;
 FILE: rentals.txt
 ID_rental
@@ -33,4 +16,10 @@ n //num rental_cars
 FILE: shop.txt
 ID_shop
 n //number od cars in shop
+;
+FILE: mechanics.txt
+ID_employee
+name_employee
+lastname_employee
+age_employee
 ;

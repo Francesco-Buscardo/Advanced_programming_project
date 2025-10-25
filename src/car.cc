@@ -20,6 +20,14 @@ Car::Car(const Car& _car): ID_car(_car.ID_car), fuel_car(_car.fuel_car), price_c
   }
 }
 
+Car::~Car(){
+
+  for(auto p : problems_car){
+    delete p;
+  }
+  problems_car.clear();
+}
+
 ostream& operator <<(ostream& os, const Car& _car){
  
   os << "-------------------------------------------" << endl
@@ -48,6 +56,7 @@ void Car::add_problem(Problem* _p){
 
 void Car::remove_problem() {
 
+  delete problems_car.back();
   problems_car.pop_back();
 }
 

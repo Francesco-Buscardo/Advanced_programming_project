@@ -7,6 +7,8 @@
 #include <vector>
 using namespace std;
 
+class Car;
+
 class Customer{
 
   static int    count_customer;
@@ -21,7 +23,7 @@ class Customer{
     Customer();
     Customer(const string& _n, const string& _l, const int& _a);
     Customer(const Customer& _c);
-    ~Customer() = default;
+    ~Customer();
 
     friend ostream& operator <<(ostream& os, const Customer& _c);
     bool            operator < (const Customer* _car) const;

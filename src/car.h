@@ -4,11 +4,12 @@
 #include "./Types/Date.h"
 #include "./Types/fuel.h"
 #include "Problems/problem.h"
-#include "./Departments/laboratory.h"
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+
+class Laboratory;
 
 class Car{
 
@@ -23,7 +24,7 @@ class Car{
     Car();               
     Car(const Fuel _fl, const long double _prc, const string _mdl);
     Car(const Car& _car); 
-    ~Car() = default;               
+    ~Car();               
 
     //operator << per date - fl - car
     friend ostream& operator << (ostream& os, const Fuel& _fl);

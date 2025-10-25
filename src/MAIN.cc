@@ -25,6 +25,7 @@ int main(int argc, char *argv[]){
   cout << "-------------------------------------------" << endl;
 
   int choice;
+  int id;
 
   while(true) {
     cout << "-------------------------------------------" << endl;
@@ -43,13 +44,34 @@ int main(int argc, char *argv[]){
         return 0;
         break;
       case 1:
-        management_shop(c.get_shop());
+        cout << "Ins Shop ID: " << endl;
+        cin  >> id;
+
+        if(c.get_shop(id) != nullptr) {
+          management_shop(*c.get_shop(id));
+        } else {
+          cout << "No shop found!" << endl;
+        }
         break;
       case 2:
-        management_rental(c.get_rental());
+        cout << "Ins Shop ID: " << endl;
+        cin  >> id;
+
+        if(c.get_rental(id) != nullptr) {
+          management_rental(*c.get_rental(id));
+        } else {
+          cout << "No rental found!" << endl;
+        }
         break;
       case 3:
-        management_laboratory(c.get_laboratory());
+        cout << "Ins Shop ID: " << endl;
+        cin  >> id;
+
+        if(c.get_laboratory(id) != nullptr) {
+          management_laboratory(*c.get_laboratory(id));
+        } else {
+          cout << "No lab found!" << endl;
+        }
         break;
       default: cout << "Wrong choice!" << endl;
         break;

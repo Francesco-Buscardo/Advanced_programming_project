@@ -10,7 +10,7 @@ class Tyre: public Problem{
   public:
     Tyre();
     Tyre(const Problem_code_t& _c);
-    ~Tyre() override = default;
+    ~Tyre() = default;
 };
 
 #endif

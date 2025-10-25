@@ -47,6 +47,6 @@ void management_rental     (Rental& _rental);
 // vector<Laboratory> init_labs();
 // vector<Shop>       init_shops();
 // vector<Rental>     init_rentals();
-void init_code(Concessionaria& _c);
+void init_code             (Concessionaria& _c);
 
 #endif

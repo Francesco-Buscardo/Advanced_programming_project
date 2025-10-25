@@ -5,5 +5,8 @@ using namespace std;
 Problem::Problem(): Problem(ENGINE){
 }
 
-Problem::Problem(const Problem_code_t& _c): Problem(_c){
+Problem::Problem(const Problem_code_t& _c): problem_code(_c){
+}
+
+Problem::~Problem(){
 }

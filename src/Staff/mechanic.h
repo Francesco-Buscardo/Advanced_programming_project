@@ -7,13 +7,13 @@
 using namespace std;
 
 class Mechanic: public Employee{
+  
   public: 
     Mechanic(); 
     Mechanic(const string _name, const string _last, const int _age);
+    Mechanic(const int _id, const string _name, const string _last, const int _age);
     Mechanic(const Mechanic& _mech);
     ~Mechanic() override = default;
-
-    bool operator <(const Mechanic& _mech) const;
 };
 
 #endif

@@ -54,7 +54,7 @@ void find_car(T& _x){
 			cout << find_by_id(_x) << endl;
 			break;
 		case 2:
-			find_by_model();
+			cout << find_by_model(_x) << endl;
 			break;
 		default:
 			break;
@@ -101,22 +101,23 @@ void add_car(T& _x){
 
 	Fuel tmp_f(tmp_ft);
 
-	Car c(tmp_f, tmp_price, tmp_m);
+	Car* car = new Car(tmp_f, tmp_price, tmp_m);
 
-	_x.add_car(&c);
+	_x.add_car(car);
 }
 
 template<typename T>
 void remove_car(T& _x){
 
-	Car c = find_by_id<T>(_x);
+	Car* c = find_by_id<T>(_x);
 
-	_x.remove_car(&c);
+	if(c != nullptr) {
+    _x.remove_car(c);        
+	}
 }
 
 void sell_to(Shop& _shop){
 
-	//get car by ID
 	int tmp_id;
 	cout << "Ins ID car: ";
 	cin  >> tmp_id;
@@ -134,9 +135,9 @@ void sell_to(Shop& _shop){
 	cout << "Ins age: " << endl;
 	cin  >> age_c;
 
-	Customer c(name_c, last_c, age_c);
+	Customer* c = new Customer(name_c, last_c, age_c);
 
-	_shop.sell_to(tmp_car, &c);
+	_shop.sell_to(tmp_car, c);
 }
 
 template<typename T, typename K>
@@ -153,9 +154,9 @@ void add_employee(T& _x){
 	cout << "age: " << endl;
 	cin  >> tmp_age;
 
-	K tmp_empl(tmp_name, tmp_last, tmp_age);
+	K* empl = new K(tmp_name, tmp_last, tmp_age);
 
-	_x.remove_employee(tmp_empl);
+	_x.add_employee(empl);
 }
 
 template<typename T, typename K>
@@ -175,18 +176,18 @@ void remove_employee(T& _x){
 	cout << "age: " << endl;
 	cin  >> tmp_age;
 
-	K* tmp_empl = new K(tmp_id, tmp_name, tmp_last, tmp_age);
+	K tmp_empl(tmp_id, tmp_name, tmp_last, tmp_age);
 
-	_x.remove_employee(tmp_empl);
-
-	delete tmp_empl;
+	_x.remove_employee(&tmp_empl);
 }
 
 void fix_car(Laboratory& _lab){
 
 	Car* c = find_by_id<Laboratory>(_lab);
 
-	_lab.fix_car(c);
+	if(c != nullptr) {
+		_lab.fix_car(c);
+	}
 }
 
 void register_rental(Rental& _rental){
@@ -202,7 +203,11 @@ void register_rental(Rental& _rental){
 		cout << "Customer non registered!" << endl; 
 		return; 
 	} else {
-		_rental.register_rental(c);
+		time_t now = time(nullptr);
+		tm* n      = localtime(&now);
+
+		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
+		_rental.register_rental(c, today);
 	}
 }
 
@@ -222,7 +227,7 @@ void register_return(Rental& _rental){
 		time_t now = time(nullptr);
 		tm* n      = localtime(&now);
 
-		Date today(n->tm_mday, n->tm_mon, n->tm_year);
+		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
 
 		_rental.register_return(c, today);
 	}
@@ -244,11 +249,12 @@ void calculate_return(Rental& _rental){
 		time_t now = time(nullptr);
 		tm* n      = localtime(&now);
 
-		Date today(n->tm_mday, n->tm_mon, n->tm_year);
+		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
 
 		cout << "Cost: " << _rental.calculate_rental(c, today) << endl;
-	}
 
+		delete today;
+	}
 }
 
 void management_shop(Shop& _shop){
