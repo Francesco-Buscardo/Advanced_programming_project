@@ -29,8 +29,8 @@ class Car{
     //operator << per date - fl - car
     friend ostream& operator << (ostream& os, const Fuel& _fl);
     friend ostream& operator << (ostream& os, const Car& _car);
-  	bool            operator <  (const Car* _car) const;
-    friend bool     operator == (const Car& _sx, const Car& _dx);
+           bool     operator <  (const Car* _car) const;
+           bool     operator == (const Car& _c)   const;
 
     void               add_problem      (Problem* _p);
     void               remove_problem   ();
@@ -41,6 +41,5 @@ class Car{
 
 ostream& operator << (ostream& os, const Fuel& _fl);
 ostream& operator << (ostream& os, const Car& _car);
-bool     operator == (const Car& _sx, const Car& _dx);
 
 #endif

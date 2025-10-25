@@ -14,6 +14,12 @@ ostream& operator <<(ostream& os, const Date& _date){
   return os;
 }
 
+bool Date::operator ==(const Date& _c) const{
+
+  return this->dd == _c.get_day() && this->mm == _c.get_month() && this->yyyy == _c.get_year();
+}
+
+
 int Date::get_day() const{
 
   return this->dd; 

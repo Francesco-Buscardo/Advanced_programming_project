@@ -27,6 +27,8 @@ class Customer{
 
     friend ostream& operator <<(ostream& os, const Customer& _c);
     bool            operator < (const Customer* _car) const;
+    bool            operator ==(const Customer& _c)   const;
+
 
     void rent_car   (Car* _car); //add _car to rental_car
     void return_car (Car* _car); //remove _car from rental_car

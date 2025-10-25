@@ -12,16 +12,17 @@ Rental::Rental(): Department(), ID_rental(++count_rentals), rentals_open(){
 
 Rental::Rental(const Rental& _ren): Department(_ren), ID_rental(_ren.ID_rental){
 
-  for(auto r : _ren.rentals_open) {
-    rentals_open.insert(make_pair(new Customer(*r.first), new Date(*r.second)));
+  for(auto& r : _ren.rentals_open) {
+    rentals_open.insert(new Triple(*r->get_customer(), *r->get_date(),*r->get_car()));
   }
 }
 
 Rental::~Rental(){
 
   for(auto r : rentals_open) {
-    delete r.first; 
-    delete r.second; 
+    delete r->get_customer(); 
+    delete r->get_date();
+    delete r->get_car(); 
   }
   rentals_open.clear();
 }
@@ -41,33 +42,39 @@ ostream& Rental::print_operator(ostream& os) const{
 		os << *it << endl;
 	}
 	for(auto it: this->rentals_open) {
-		os << "Customer: " << it.first
-			 << ", Date: "   << it.second << endl;
+		os << "Customer: " << it->get_customer()
+			 << ", Date: "   << it->get_date() 
+       << ", Car: "    << it->get_car() << endl;
 	}
 
 	return os;
 } 
 
-ostream& operator <<(ostream& os, const Rental& _ren){
+ostream& operator <<(ostream& os, const Rental& _r){
 
-  return _ren.print_operator(os);
+  return _r.print_operator(os);
 }
 
-void Rental::register_rental(Customer* _c, Date* _d){
+void Rental::register_rental(Customer* _c, Date* _d, Car* _car){
 
-  cout << "Rental registered!" << endl; 
+  cout << "Rental registered!" << endl;
   
-  rentals_open.insert({_c, _d}); 
+  rentals_open.insert(new Triple(*_c, *_d, *_car)); 
+
+  remove_car(_car);
 }
 
-void Rental::register_return(Customer* _c, Date* _d){
+void Rental::register_return(Customer* _c, Date* _d, Car* _car){
 
-  if(rentals_open.find({_c, _d}) != rentals_open.end()) {
-    rentals_open.erase({_c, _d});
-    delete _c;
-    delete _d;
-  } else {
-    cout << "Return already registered!" << endl;
+  for(auto it = rentals_open.begin(); it != rentals_open.end(); ++it) {
+    if(((*it)->get_customer() == _c) && ((*it)->get_date() == _d) && ((*it)->get_car() == _car)) {
+      rentals_open.erase(it);
+      add_car(new Car(*(*it)->get_car()));
+
+      delete _c; 
+      delete _d;
+      delete _car;
+    }
   }
 }
 
@@ -75,7 +82,6 @@ int Rental::get_rate() const{
 
   return this->rate;
 }                            
-
 
 int Rental::diff_in_days(const Date& _start, const Date& _today) const {
   
@@ -95,12 +101,11 @@ int Rental::diff_in_days(const Date& _start, const Date& _today) const {
   return static_cast<int>(difftime(bb, aa) / (60 * 60 * 24));
 }
 
-
-int Rental::calculate_rental(Customer* _c, Date* _d){
+int Rental::calculate_rental(Customer* _c, Date* _d, Car* _car){
 
   auto it = rentals_open.begin();
   while(it != rentals_open.end()) {
-    if(it->first == _c) {
+    if(((*it)->get_customer() == _c) && ((*it)->get_date() == _d) && ((*it)->get_car() == _car)) {
       break; 
     }
     ++it;
@@ -109,7 +114,7 @@ int Rental::calculate_rental(Customer* _c, Date* _d){
   if(it == rentals_open.end()) {
     return 0;
   } else {
-    Date start_rental = *it->second;
+    Date start_rental = *(*it)->get_date();
     int  days         = diff_in_days(start_rental, *_d);
     int  hours        = days * 24;
 

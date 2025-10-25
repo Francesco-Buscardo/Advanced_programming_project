@@ -44,8 +44,9 @@ bool Car::operator <(const Car* _car) const {
   return this->ID_car < _car->ID_car;
 }
 
-bool operator ==(const Car& _sx, const Car& _dx){
-  return _sx.ID_car == _dx.ID_car;
+bool Car::operator ==(const Car& _c) const{
+  
+  return this->ID_car == _c.get_ID();
 }
 
 void Car::add_problem(Problem* _p){

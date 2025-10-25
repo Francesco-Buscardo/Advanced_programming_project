@@ -47,6 +47,11 @@ bool Customer::operator <(const Customer* _c) const {
   return this->ID_customer < _c->ID_customer;
 }
 
+bool Customer::operator ==(const Customer& _c) const{
+
+  return this->ID_customer == _c.get_ID();
+}
+
 void Customer::rent_car(Car* _car){
 
   rental_cars.push_back(_car);

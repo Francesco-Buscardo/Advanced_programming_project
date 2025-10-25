@@ -192,27 +192,39 @@ void fix_car(Laboratory& _lab){
 
 void register_rental(Rental& _rental){
 
+	Car* car = find_by_id<Rental>(_rental);
+	if(car == nullptr){
+		cout << "Not available car!" << endl;
+		return;
+	}
+	
 	int tmp_id; 
 
 	cout << "ID customer: " << endl;
 	cin  >> tmp_id;
 
 	Customer* c = _rental.get_customer(tmp_id);
-
 	if(c == nullptr) {
 		cout << "Customer non registered!" << endl; 
 		return; 
-	} else {
-		time_t now = time(nullptr);
-		tm* n      = localtime(&now);
+	} 
 
-		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
-		_rental.register_rental(c, today);
-	}
+	time_t now = time(nullptr);
+	tm* n      = localtime(&now);
+
+	Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
+
+	_rental.register_rental(c, today, car);
 }
 
 void register_return(Rental& _rental){
 
+	Car* car = find_by_id<Rental>(_rental);
+	if(car == nullptr){
+		cout << "Error!" << endl;
+		return;
+	}
+
 	int tmp_id; 
 
 	cout << "ID customer: " << endl;
@@ -223,18 +235,23 @@ void register_return(Rental& _rental){
 	if(c == nullptr) {
 		cout << "Customer non registered!" << endl; 
 		return; 
-	} else {
-		time_t now = time(nullptr);
-		tm* n      = localtime(&now);
+	} 
+	time_t now = time(nullptr);
+	tm* n      = localtime(&now);
 
-		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
+	Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
 
-		_rental.register_return(c, today);
-	}
+	_rental.register_return(c, today, car);
 }
 
 void calculate_return(Rental& _rental){
 
+	Car* car = find_by_id<Rental>(_rental);
+	if(car == nullptr){
+		cout << "Error!" << endl;
+		return;
+	}
+
 	int tmp_id; 
 
 	cout << "ID customer: " << endl;
@@ -251,7 +268,7 @@ void calculate_return(Rental& _rental){
 
 		Date* today = new Date(n->tm_mday, n->tm_mon, n->tm_year);
 
-		cout << "Cost: " << _rental.calculate_rental(c, today) << endl;
+		cout << "Cost: " << _rental.calculate_rental(c, today, car) << endl;
 
 		delete today;
 	}
