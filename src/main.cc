@@ -75,8 +75,9 @@ void add_car(T& _x){
 	cout << "2. HYBRID" << endl;
 	cout << "3. DIESEL" << endl;
 	cout << "4. GPL" << endl;
-	cout << "--> " << endl;
+	cout << "--> ";
 	cin  >> c;
+
 	switch(c){
 		case 1: 
 			tmp_ft = GASOLINE;
@@ -89,20 +90,19 @@ void add_car(T& _x){
 			break; 
 		case 4: 
 		  tmp_ft = GPL;
-			break; 
-		case 5: 
+			break;  
+		default: 
 			tmp_ft = GASOLINE;
-			break; 
+			break;
 	}
-	cout << "Price:" << endl;
+	Fuel tmp_f(tmp_ft);
+	cout << "Price:";
 	cin  >> tmp_price;
-	cout << "Model: " << endl;
+	cout << "Model: ";
 	cin  >> tmp_m;
 
-	Fuel tmp_f(tmp_ft);
-
 	Car* car = new Car(tmp_f, tmp_price, tmp_m);
-
+	cout << "" << endl;
 	_x.add_car(car);
 }
 
@@ -260,23 +260,22 @@ void calculate_return(Rental& _rental){
 void management_shop(Shop& _shop){
 
 	int choice;
-
-	cout << "-------------------------------------------" << endl;
-	cout << "SHOP" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "1. Visualizza parco auto" << endl;
-	cout << "2. Aggiungi nuovo veicolo" << endl;
-	cout << "3. Rimuovi veicolo venduto" << endl;
-	cout << "4. Vendita veicolo a cliente" << endl;
-	cout << "5. Ricerca veicolo" << endl;
-	cout << "6. Aggiungi dipendente" << endl;
-	cout << "7. Licenzia" << endl;
-	cout << "0. Torna al menu principale" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "Scelta: ";
-	cin  >> choice;
-
 	while(true){
+		cout << "-------------------------------------------" << endl;
+		cout << "SHOP" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "1. Visualizza parco auto" << endl;
+		cout << "2. Aggiungi nuovo veicolo" << endl;
+		cout << "3. Rimuovi veicolo venduto" << endl;
+		cout << "4. Vendita veicolo a cliente" << endl;
+		cout << "5. Ricerca veicolo" << endl;
+		cout << "6. Aggiungi dipendente" << endl;
+		cout << "7. Licenzia" << endl;
+		cout << "0. Torna al menu principale" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "Scelta: ";
+		cin  >> choice;
+	
 		switch (choice){
 		case 0:
 			return;
@@ -302,8 +301,6 @@ void management_shop(Shop& _shop){
 		case 7:
 			remove_employee<Shop, Shop_employee>(_shop);
 			break;
-		default:
-			break;
 		}
 	}
 }
@@ -312,21 +309,21 @@ void management_laboratory(Laboratory& _lab){
 
 	int choice;
 
-	cout << "-------------------------------------------" << endl;
-	cout << "LABORATORY" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "1. Visualizza officina" << endl;
-	cout << "2. Aggiungi nuova macchina da riparare" << endl;
-	cout << "3. Ripara veicolo" << endl;
-	cout << "4. Ricerca veicolo" << endl;
-	cout << "5. Aggiungi dipendente" << endl;
-	cout << "6. Licenzia" << endl;
-	cout << "0. Torna al menu principale" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "Scelta: ";
-	cin  >> choice;
-
 	while(true){
+		cout << "-------------------------------------------" << endl;
+		cout << "LABORATORY" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "1. Visualizza officina" << endl;
+		cout << "2. Aggiungi nuova macchina da riparare" << endl;
+		cout << "3. Ripara veicolo" << endl;
+		cout << "4. Ricerca veicolo" << endl;
+		cout << "5. Aggiungi dipendente" << endl;
+		cout << "6. Licenzia" << endl;
+		cout << "0. Torna al menu principale" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "Scelta: ";
+		cin  >> choice;
+	
 		switch (choice){
 		case 0:
 			return;
@@ -349,8 +346,6 @@ void management_laboratory(Laboratory& _lab){
 		case 6:
 			remove_employee<Laboratory, Mechanic>(_lab);	
 			break;
-		default:
-			break;
 		}
 	}
 }
@@ -358,25 +353,25 @@ void management_laboratory(Laboratory& _lab){
 void management_rental(Rental& _rental){
 
 	int choice;
-
-	cout << "-------------------------------------------" << endl;
-	cout << "RENTAL" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "1. Visualizza auto a noleggio" << endl;
-	cout << "2. Aggiungi nuova auto a noleggio" << endl;
-	cout << "3. Rimuovgi auto a noleggio" << endl;
-	cout << "4. Registra noleggio" << endl;
-	cout << "5. Registra restituzione" << endl;
-	cout << "6. Calcola costo noleggio" << endl;
-	cout << "7. Ricerca veicolo" << endl;
-	cout << "8. Aggiungi dipendente" << endl;
-	cout << "9. Licenzia" << endl;
-	cout << "0. Torna al menu principale" << endl;
-	cout << "-------------------------------------------" << endl;
-	cout << "Scelta: ";
-	cin  >> choice;
-
+	
 	while(true){
+		cout << "-------------------------------------------" << endl;
+		cout << "RENTAL" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "1. Visualizza auto a noleggio" << endl;
+		cout << "2. Aggiungi nuova auto a noleggio" << endl;
+		cout << "3. Rimuovgi auto a noleggio" << endl;
+		cout << "4. Registra noleggio" << endl;
+		cout << "5. Registra restituzione" << endl;
+		cout << "6. Calcola costo noleggio" << endl;
+		cout << "7. Ricerca veicolo" << endl;
+		cout << "8. Aggiungi dipendente" << endl;
+		cout << "9. Licenzia" << endl;
+		cout << "0. Torna al menu principale" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "Scelta: ";
+		cin  >> choice;
+	
 		switch (choice){
 		case 0:
 			return;
@@ -408,687 +403,34 @@ void management_rental(Rental& _rental){
 		case 9:
 			remove_employee<Rental, Rental_employee>(_rental);
 			break;
-		default:
-			break;
 		}
 	}
 }
 
-void init_code(Concessionaria& _c){
-	
-	// vector<Car>        conc_cars     = init_cars();
-  // vector<Laboratory> conc_labs     = init_labs(conc_cars);
-  // vector<Laboratory> conc_labs     = init_labs();
-  // vector<Shop>       conc_shops    = init_shops();
-  // vector<Rental>     conc_rentals  = init_rentals();
-}
+void init_datas(Concessionaria& _c){
 
-/*
-vector<Car> init_cars(){
+	ifstream init_file;
+	init_file.open("./DataSet/init_file.txt", ios::in);
 
-	ifstream _in_file;
-	_in_file.open("./dataSet/cars.txt", ios::in);
+	int n_shops; 
+	int n_labs; 
+	int n_rentals;
 
-	vector<Car> cars;
-
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while (_in_file >> id 
-				   				>> price 
-				   				>> dd
-				   				>> mm
-				   				>> yyyy
-				   				>> ps 
-				   				>> color 
-				   				>> x
-				   				>> y
-				   				>> z 
-				   				>> model
-								  >> sc) {
-
-	  Date yop(dd, mm, yyyy);
-	  vector<int> dim = {x, y, z};
-	  Car car(id, price, yop, ps, color, dim, model);
-		cout << car << endl;
-
-		cars.push_back(car);
-	}
-
-	_in_file.close();
-	return cars;
-}
-*/
-/*
-vector<Laboratory> init_labs(const vector<Car>& _cars)
-vector<Laboratory> init_labs(){
-
-	srand((unsigned) time(0));
-
-	ifstream _in_file_lab;
-	ifstream _in_file_mechanic;
-	_in_file_lab.open("./dataSet/labs.txt", ios::in);
-	_in_file_mechanic.open("./dataSet/mechanics.txt", ios::in);
-
-	
-	vector<Laboratory> labs;
-
-	string ID_lab;
-	int n; //cars num
-	int m; //mechenics num
-	string sc; //;
-
-	string ID_employee;
-  string name_employee;
-  string lastname_employee;
-  int age_employee;
-
-	while (_in_file_lab >> ID_lab 
-											>> n 
-											>> m
-											>> sc){
-		Laboratory lab(ID_lab);
-
-		cout << lab << endl;
-
-		// cout << "CARS IN LAB" << endl;
-		// while(n-- > 0) {
-		// 	int i = rand() % _cars.size();
-		// 	lab.add_car(_cars.at(i));
-		// 	cout << _cars.at(i);
-		// }
-
-		cout << "MECHANICS IN LAB" << endl;
-		while(m-- > 0) {
-			_in_file_mechanic >> ID_employee
-								 	 			>> name_employee 
-								 	 			>> lastname_employee
-								 	 			>> age_employee
-								 	 			>> sc;
-			Mechanic m(ID_employee, name_employee, lastname_employee, age_employee);
-			lab.add_mechanic(m);
-
-			cout << m << endl;
+	while(init_file >> n_shops >> n_labs >> n_rentals) {
+		while(n_shops > 0) {
+			Shop* s = new Shop();
+			_c.add_shop(s);
+			--n_shops;
 		}
-
-		labs.push_back(lab);
-	}
-
-	_in_file_lab.close();
-	_in_file_mechanic.close();
-
-	return labs; 
-}
-*/
-/*
-vector<Shop> init_shops(){ //point of sale
-
-	ifstream _in_file;
-	ifstream _in_shop_cars;
-	_in_file.open("./dataSet/shops.txt", ios::in);
-	_in_shop_cars.open("./dataSet/shop_cars.txt", ios::in);
-
-	vector<Shop> shops;
-
-	string id_s;
-	int n; //num of cars in shop
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while(_in_file >> id_s >> n >> sc) {
-		Shop s(id_s);
-
-		cout << s;
-
-		cout << "CARS IN SHOP" << endl;
-		while(n-- > 0){
-			_in_shop_cars >> id 
-				   					>> price 
-				   					>> dd
-				   					>> mm
-				   					>> yyyy
-				   					>> ps 
-				   					>> color 
-				   					>> x
-				   					>> y
-				   					>> z 
-
-vector<Car> init_cars(){
-
-	ifstream _in_file;
-	_in_file.open("./dataSet/cars.txt", ios::in);
-
-	vector<Car> cars;
-
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while (_in_file >> id 
-				   				>> price 
-				   				>> dd
-				   				>> mm
-				   				>> yyyy
-				   				>> ps 
-				   				>> color 
-				   				>> x
-				   				>> y
-				   				>> z 
-				   				>> model
-								  >> sc) {
-
-	  Date yop(dd, mm, yyyy);
-	  vector<int> dim = {x, y, z};
-	  Car car(id, price, yop, ps, color, dim, model);
-		cout << car << endl;
-
-		cars.push_back(car);
-	}
-
-	_in_file.close();
-	return cars;
-}
-*/
-/*
-vector<Laboratory> init_labs(const vector<Car>& _cars)
-vector<Laboratory> init_labs(){
-
-	srand((unsigned) time(0));
-
-	ifstream _in_file_lab;
-	ifstream _in_file_mechanic;
-	_in_file_lab.open("./dataSet/labs.txt", ios::in);
-	_in_file_mechanic.open("./dataSet/mechanics.txt", ios::in);
-
-	
-	vector<Laboratory> labs;
-
-	string ID_lab;
-	int n; //cars num
-	int m; //mechenics num
-	string sc; //;
-
-	string ID_employee;
-  string name_employee;
-  string lastname_employee;
-  int age_employee;
-
-	while (_in_file_lab >> ID_lab 
-											>> n 
-											>> m
-											>> sc){
-		Laboratory lab(ID_lab);
-
-		cout << lab << endl;
-
-		// cout << "CARS IN LAB" << endl;
-		// while(n-- > 0) {
-		// 	int i = rand() % _cars.size();
-		// 	lab.add_car(_cars.at(i));
-		// 	cout << _cars.at(i);
-		// }
-
-		cout << "MECHANICS IN LAB" << endl;
-		while(m-- > 0) {
-			_in_file_mechanic >> ID_employee
-								 	 			>> name_employee 
-								 	 			>> lastname_employee
-								 	 			>> age_employee
-								 	 			>> sc;
-			Mechanic m(ID_employee, name_employee, lastname_employee, age_employee);
-			lab.add_mechanic(m);
-
-			cout << m << endl;
+		while(n_labs > 0) {
+			Laboratory* l = new Laboratory();
+			_c.add_laboratory(l);
+			--n_labs;
 		}
-
-		labs.push_back(lab);
-	}
-
-	_in_file_lab.close();
-	_in_file_mechanic.close();
-
-	return labs; 
-}
-*/
-/*
-vector<Shop> init_shops(){ //point of sale
-
-	ifstream _in_file;
-	ifstream _in_shop_cars;
-	_in_file.open("./dataSet/shops.txt", ios::in);
-	_in_shop_cars.open("./dataSet/shop_cars.txt", ios::in);
-
-	vector<Shop> shops;
-
-	string id_s;
-	int n; //num of cars in shop
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while(_in_file >> id_s >> n >> sc) {
-		Shop s(id_s);
-
-		cout << s;
-
-		cout << "CARS IN SHOP" << endl;
-		while(n-- > 0){
-			_in_shop_cars >> id 
-				   					>> price 
-				   					>> dd
-				   					>> mm
-				   					>> yyyy
-				   					>> ps 
-				   					>> color 
-				   					>> x
-				   					>> y
-				   					>> z 
-				   					>> model
-								  	>> sc;
-
-			Date yop(dd, mm, yyyy);
-			vector<int> dim = {x, y, z};
-			Car car(id, price, yop, ps, color, dim, model);
-
-			s.add_car(car);
-
-			cout << car << endl;
+		while(n_rentals > 0) {
+			Rental* r = new Rental();
+			_c.add_rental(r);
+			--n_rentals;
 		}
-
-		shops.push_back(s);
 	}
-
-	_in_file.close();
-	_in_shop_cars.close();
-
-	return shops; 
 }
-*/
-/*
-vector<Rental> init_rentals(){
-
-	ifstream _in_file;
-	ifstream _in_rental_cars;
-	_in_file.open("./dataSet/rentals.txt", ios::in);
-	_in_rental_cars.open("./dataSet/rental_cars.txt", ios::in);
-
-	vector<Rental> rentals;
-
-	string id_ren;
-	int n; //rental_cars
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-	
-
-	while(_in_file >> id_ren >> n >> sc){
-		Rental ren(id_ren);
-		cout << ren;
-
-		cout << "CARS IN RENTAL" << endl;
-		while(n-- > 0){
-			_in_rental_cars >> id 
-				   						>> price 
-				   						>> dd
-				   						>> mm
-				   						>> yyyy
-				   						>> ps 
-				   						>> color 
-				   						>> x
-				   						>> y
-				   						>> z 
-				   						>> model
-								  		>> sc;
-
-vector<Car> init_cars(){
-
-	ifstream _in_file;
-	_in_file.open("./dataSet/cars.txt", ios::in);
-
-	vector<Car> cars;
-
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while (_in_file >> id 
-				   				>> price 
-				   				>> dd
-				   				>> mm
-				   				>> yyyy
-				   				>> ps 
-				   				>> color 
-				   				>> x
-				   				>> y
-				   				>> z 
-				   				>> model
-								  >> sc) {
-
-	  Date yop(dd, mm, yyyy);
-	  vector<int> dim = {x, y, z};
-	  Car car(id, price, yop, ps, color, dim, model);
-		cout << car << endl;
-
-		cars.push_back(car);
-	}
-
-	_in_file.close();
-	return cars;
-}
-*/
-/*
-vector<Laboratory> init_labs(const vector<Car>& _cars){
-
-	srand((unsigned) time(0));
-
-	ifstream _in_file_lab;
-	ifstream _in_file_mechanic;
-	_in_file_lab.open("./dataSet/labs.txt", ios::in);
-	_in_file_mechanic.open("./dataSet/mechanics.txt", ios::in);
-
-	
-	vector<Laboratory> labs;
-
-	string ID_lab;
-	int n; //cars num
-	int m; //mechenics num
-	string sc; //;
-
-	string ID_employee;
-  string name_employee;
-  string lastname_employee;
-  int age_employee;
-
-	while (_in_file_lab >> ID_lab 
-											>> n 
-											>> m
-											>> sc){
-		Laboratory lab(ID_lab);
-
-		cout << lab << endl;
-
-		// cout << "CARS IN LAB" << endl;
-		// while(n-- > 0) {
-		// 	int i = rand() % _cars.size();
-		// 	lab.add_car(_cars.at(i));
-		// 	cout << _cars.at(i);
-		// }
-
-		cout << "MECHANICS IN LAB" << endl;
-		while(m-- > 0) {
-			_in_file_mechanic >> ID_employee
-								 	 			>> name_employee 
-								 	 			>> lastname_employee
-								 	 			>> age_employee
-								 	 			>> sc;
-			Mechanic m(ID_employee, name_employee, lastname_employee, age_employee);
-			lab.add_mechanic(m);
-
-			cout << m << endl;
-		}
-
-		labs.push_back(lab);
-	}
-
-	_in_file_lab.close();
-	_in_file_mechanic.close();
-
-	return labs; 
-}
-*/
-/*
-vector<Shop> init_shops(){ //point of sale
-
-	ifstream _in_file;
-	ifstream _in_shop_cars;
-	_in_file.open("./dataSet/shops.txt", ios::in);
-	_in_shop_cars.open("./dataSet/shop_cars.txt", ios::in);
-
-	vector<Shop> shops;
-
-	string id_s;
-	int n; //num of cars in shop
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-
-	while(_in_file >> id_s >> n >> sc) {
-		Shop s(id_s);
-
-		cout << s;
-
-		cout << "CARS IN SHOP" << endl;
-		while(n-- > 0){
-			_in_shop_cars >> id 
-				   					>> price 
-				   					>> dd
-				   					>> mm
-				   					>> yyyy
-				   					>> ps 
-				   					>> color 
-				   					>> x
-				   					>> y
-				   					>> z 
-				   					>> model
-								  	>> sc;
-
-			Date yop(dd, mm, yyyy);
-			vector<int> dim = {x, y, z};
-			Car car(id, price, yop, ps, color, dim, model);
-
-			s.add_car(car);
-
-			cout << car << endl;
-		}
-
-		shops.push_back(s);
-	}
-
-	_in_file.close();
-	_in_shop_cars.close();
-
-	return shops; 
-}
-*/
-/*
-vector<Rental> init_rentals(){
-
-	ifstream _in_file;
-	ifstream _in_rental_cars;
-	_in_file.open("./dataSet/rentals.txt", ios::in);
-	_in_rental_cars.open("./dataSet/rental_cars.txt", ios::in);
-
-	vector<Rental> rentals;
-
-	string id_ren;
-	int n; //rental_cars
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-	
-
-	while(_in_file >> id_ren >> n >> sc){
-		Rental ren(id_ren);
-		cout << ren;
-
-		cout << "CARS IN RENTAL" << endl;
-		while(n-- > 0){
-			_in_rental_cars >> id 
-				   						>> price 
-				   						>> dd
-				   						>> mm
-				   						>> yyyy
-				   						>> ps 
-				   						>> color 
-				   						>> x
-				   						>> y
-				   						>> z 
-				   						>> model
-								  		>> sc;
-			Date yop(dd, mm, yyyy);
-	  	vector<int> dim = {x, y, z};
-	  	Car car(id, price, yop, ps, color, dim, model);
-
-			cout << car;
-
-			ren.add_car(car);
-		}
-
-		rentals.push_back(ren);
-	}
-
-	_in_file.close();
-	_in_rental_cars.close();
-
-	return rentals; 
-}
-			Date yop(dd, mm, yyyy);
-	  	vector<int> dim = {x, y, z};
-	  	Car car(id, price, yop, ps, color, dim, model);
-
-			cout << car;
-
-			ren.add_car(car);
-		}
-
-		rentals.push_back(ren);
-	}
-
-	_in_file.close();
-	_in_rental_cars.close();
-
-	return rentals; 
-}
-				   					>> model
-								  	>> sc;
-
-			Date yop(dd, mm, yyyy);
-			vector<int> dim = {x, y, z};
-			Car car(id, price, yop, ps, color, dim, model);
-
-			s.add_car(car);
-
-			cout << car << endl;
-		}
-
-		shops.push_back(s);
-	}
-
-	_in_file.close();
-	_in_shop_cars.close();
-
-	return shops; 
-}
-*/
-/*
-vector<Rental> init_rentals(){
-
-	ifstream _in_file;
-	ifstream _in_rental_cars;
-	_in_file.open("./dataSet/rentals.txt", ios::in);
-	_in_rental_cars.open("./dataSet/rental_cars.txt", ios::in);
-
-	vector<Rental> rentals;
-
-	string id_ren;
-	int n; //rental_cars
-
-	//car info
-	string id;
-	long double price;
-	int dd, mm, yyyy;
-	Power_supply ps;
-	string color;
-	int x, y, z;
-	string model;
-	string sc;
-	
-
-	while(_in_file >> id_ren >> n >> sc){
-		Rental ren(id_ren);
-		cout << ren;
-
-		cout << "CARS IN RENTAL" << endl;
-		while(n-- > 0){
-			_in_rental_cars >> id 
-				   						>> price 
-				   						>> dd
-				   						>> mm
-				   						>> yyyy
-				   						>> ps 
-				   						>> color 
-				   						>> x
-				   						>> y
-				   						>> z 
-				   						>> model
-								  		>> sc;
-			Date yop(dd, mm, yyyy);
-	  	vector<int> dim = {x, y, z};
-	  	Car car(id, price, yop, ps, color, dim, model);
-
-			cout << car;
-
-			ren.add_car(car);
-		}
-
-		rentals.push_back(ren);
-	}
-
-	_in_file.close();
-	_in_rental_cars.close();
-
-	return rentals; 
-}
-*/

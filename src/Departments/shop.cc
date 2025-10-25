@@ -4,10 +4,14 @@ using namespace std;
 
 int Shop::count_shops = 0;
 
-Shop::Shop(): Department(), ID_shop(++count_shops){
+Shop::Shop(): Department(), ID_shop(++count_shops), sales(){
 }
 
 Shop::Shop(const Shop& _shop): Department(_shop), ID_shop(_shop.ID_shop){
+
+  for(auto s : _shop.sales) {
+    sales.push_back(make_pair(new Car(*s.first), new Customer(*s.second)));
+  }
 }
 
 Shop::~Shop(){
@@ -22,18 +26,18 @@ Shop::~Shop(){
 ostream& Shop::print_operator(ostream& os) const{
 
 	os << "-------------------------------------------" << endl
-     << "Shop " << "ID: " << this->ID_shop << endl
+     << "Shop " << "ID: " << ID_shop << endl
      << "-------------------------------------------" << endl;
-	for(auto* it: this->cars) {
+	for(auto* it: cars) {
 		os << *it << endl;
 	}
-  for(auto* it: this->employees) {
+  for(auto* it: employees) {
 		os << *it << endl;
 	}
-  for(auto* it: this->customers) {
+  for(auto* it: customers) {
 		os << *it << endl;
 	}
-	for(auto it: this->sales) {
+	for(auto it: sales) {
 		os << "Car: " << it.first
 			 << ", Customer: " << it.second << endl;
 	}

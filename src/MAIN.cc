@@ -6,9 +6,9 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 
-  cout << "-------------------------------------------" << endl;
-  cout << "Initializing Concessionaria . . ." << endl;
-  cout << "-------------------------------------------" << endl;
+  // "-------------------------------------------
+  // "Initializing Concessionaria!
+  // "-------------------------------------------
   
   string name;
   if(argc == 1) {
@@ -18,11 +18,11 @@ int main(int argc, char *argv[]){
   }
   Concessionaria c(name);
 
-  init_code(c);
+  init_datas(c);
 
-  cout << "-------------------------------------------" << endl;
-  cout << "Stop Initialization!" << endl;
-  cout << "-------------------------------------------" << endl;
+  // -------------------------------------------
+  // Stop Initialization!
+  // -------------------------------------------
 
   int choice;
   int id;

@@ -9,7 +9,11 @@ int Laboratory::count_labs = 0;
 Laboratory::Laboratory(): Department(), ID_laboratory(++count_labs), available_mechanics(){
 }
 
-Laboratory::Laboratory(const Laboratory& _lab) : Department(_lab), ID_laboratory(_lab.ID_laboratory), available_mechanics(_lab.available_mechanics){
+Laboratory::Laboratory(const Laboratory& _lab) : Department(_lab), ID_laboratory(_lab.ID_laboratory){
+
+  for(auto m : _lab.available_mechanics) {
+    available_mechanics.insert(new Employee(*m));
+  }
 }
 
 Laboratory::~Laboratory(){
@@ -69,10 +73,8 @@ void Laboratory::fix_car(Car* _car){
 
 void Laboratory::add_mechanic(Employee* _mech){
 
-  auto it = available_mechanics.find(_mech);
-
-  if(it == available_mechanics.end()) {
-    available_mechanics.insert(*it);
+  if(available_mechanics.find(_mech) == available_mechanics.end()) {
+    available_mechanics.insert(_mech);
   } else {
     cout << "Mechanic already insert!" << endl;
   }
@@ -80,11 +82,9 @@ void Laboratory::add_mechanic(Employee* _mech){
 
 void Laboratory::remove_mechanic(Employee* _mech){
   
-  auto it = available_mechanics.find(_mech);
-
-  if(it != available_mechanics.end()) {
-    delete *it;
-    available_mechanics.erase(it);
+  if(available_mechanics.find(_mech) != available_mechanics.end()) {
+    available_mechanics.erase(_mech);
+    delete _mech;
   } else {
     cout << "Mechanic already removed!" << endl;
   }

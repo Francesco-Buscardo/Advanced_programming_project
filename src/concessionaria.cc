@@ -9,7 +9,17 @@ Concessionaria::Concessionaria(): name_concessionaria(""), shops(), labs(), rent
 Concessionaria::Concessionaria(const string& _n): name_concessionaria(_n), shops(), labs(), rentals(){
 }
 
-Concessionaria::Concessionaria(const Concessionaria& _c): name_concessionaria(_c.name_concessionaria), shops(_c.shops), labs(_c.labs), rentals(_c.rentals){
+Concessionaria::Concessionaria(const Concessionaria& _c): name_concessionaria(_c.name_concessionaria){
+  
+  for(auto s : _c.shops) {
+    shops.insert(new Shop(*s));
+  }
+  for(auto l : _c.labs) {
+    labs.insert(new Laboratory(*l));
+  }
+  for(auto r : _c.rentals) {
+    rentals.insert(new Rental(*r));
+  }
 }
 
 Concessionaria::~Concessionaria(){
@@ -29,11 +39,9 @@ Concessionaria::~Concessionaria(){
 }
 
 void Concessionaria::add_shop(Shop* _x){
-
-  auto it = shops.find(_x);
-
-  if(it != shops.end()) {
-    shops.insert(*it);
+  
+  if (shops.find(_x) == shops.end()) {
+    shops.insert(_x);
   } else {
     cout << "Already in!" << endl;
   }
@@ -41,21 +49,17 @@ void Concessionaria::add_shop(Shop* _x){
 
 void Concessionaria::add_laboratory(Laboratory* _x){
   
-  auto it = labs.find(_x);
-
-  if(it != labs.end()) {
-    labs.insert(*it);
+  if (labs.find(_x) == labs.end()) {
+    labs.insert(_x);
   } else {
     cout << "Already in!" << endl;
   }
 }
 
 void Concessionaria::add_rental(Rental* _x){
-
-  auto it = rentals.find(_x);
-
-  if(it != rentals.end()) {
-    rentals.insert(*it);
+  
+  if (rentals.find(_x) == rentals.end()) {
+    rentals.insert(_x);
   } else {
     cout << "Already in!" << endl;
   }
@@ -66,8 +70,8 @@ void Concessionaria::remove_shop(Shop* _x){
   auto it = shops.find(_x);
 
   if(it != shops.end()) {
-    delete *it;
     shops.erase(it);
+    delete *it;
   } else {
     cout << "Already out!" << endl;
   }
@@ -78,8 +82,8 @@ void Concessionaria::remove_laboratory(Laboratory* _x){
   auto it = labs.find(_x);
 
   if(it != labs.end()) {
-    delete *it;
     labs.erase(it);
+    delete *it;
   } else {
     cout << "Already out!" << endl;
   }
@@ -90,8 +94,8 @@ void Concessionaria::remove_rental(Rental* _x){
   auto it = rentals.find(_x);
 
   if(it != rentals.end()) {
-    delete *it;
     rentals.erase(it);
+    delete *it;
   } else {
     cout << "Already out!" << endl;
   }

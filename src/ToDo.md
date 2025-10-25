@@ -1,2 +1,1 @@
-[] ridefinire operator << in department
-[] fare metodi i concessionaria
+[] logica return rental car

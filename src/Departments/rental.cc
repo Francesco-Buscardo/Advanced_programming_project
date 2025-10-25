@@ -10,7 +10,11 @@ int Rental::count_rentals = 0;
 Rental::Rental(): Department(), ID_rental(++count_rentals), rentals_open(){
 }
 
-Rental::Rental(const Rental& _ren): Department(_ren), ID_rental(_ren.ID_rental), rentals_open(_ren.rentals_open){
+Rental::Rental(const Rental& _ren): Department(_ren), ID_rental(_ren.ID_rental){
+
+  for(auto r : _ren.rentals_open) {
+    rentals_open.insert(make_pair(new Customer(*r.first), new Date(*r.second)));
+  }
 }
 
 Rental::~Rental(){
@@ -58,12 +62,10 @@ void Rental::register_rental(Customer* _c, Date* _d){
 
 void Rental::register_return(Customer* _c, Date* _d){
 
-  auto it = rentals_open.find({_c, _d});
-
-  if(it != rentals_open.end()) {
-    delete it->first;
-    delete it->second;
-    rentals_open.erase(*it);
+  if(rentals_open.find({_c, _d}) != rentals_open.end()) {
+    rentals_open.erase({_c, _d});
+    delete _c;
+    delete _d;
   } else {
     cout << "Return already registered!" << endl;
   }

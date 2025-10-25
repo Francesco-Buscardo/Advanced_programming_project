@@ -42,11 +42,6 @@ void management_shop       (Shop& _shop);
 void management_laboratory (Laboratory& _lab);
 void management_rental     (Rental& _rental);
 
-// vector<Car>        init_cars();
-// vector<Laboratory> init_labs(const vector<Car>& _car);
-// vector<Laboratory> init_labs();
-// vector<Shop>       init_shops();
-// vector<Rental>     init_rentals();
-void init_code             (Concessionaria& _c);
+void init_datas            (Concessionaria& _c);
 
 #endif

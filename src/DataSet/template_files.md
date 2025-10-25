@@ -1,0 +1,4 @@
+# FILE: init_file.txt
+how_many_shops_to_create
+how_many_labs_to_create
+how_many_rentals_to_create

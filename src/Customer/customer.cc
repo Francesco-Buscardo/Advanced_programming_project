@@ -12,7 +12,14 @@ Customer::Customer(): ID_customer(-1), name_customer(""), lastname_customer(""),
 Customer::Customer(const string& _n, const string& _l, const int& _a): ID_customer(++count_customer), name_customer(_n), lastname_customer(_l), age_customer(_a), rental_cars(), bought_cars(){
 }
 
-Customer::Customer(const Customer& _c): ID_customer(_c.ID_customer), name_customer(_c.name_customer), lastname_customer(_c.lastname_customer), age_customer(_c.age_customer), rental_cars(_c.rental_cars), bought_cars(_c.bought_cars){
+Customer::Customer(const Customer& _c): ID_customer(_c.ID_customer), name_customer(_c.name_customer), lastname_customer(_c.lastname_customer), age_customer(_c.age_customer){
+
+  for(auto c : _c.rental_cars) {
+    rental_cars.push_back(new Car(*c));
+  }
+  for(auto c : _c.bought_cars) {
+    bought_cars.push_back(new Car(*c));
+  }
 }
 
 Customer::~Customer(){
@@ -51,8 +58,8 @@ void Customer::return_car(Car* _car){
 
   for(auto it = rental_cars.begin(); it != rental_cars.end();  ++it) {
     if(*it == _car) {
-      delete *it;
       rental_cars.erase(it);
+      delete *it;
       cout << "Car returned!" << endl;
     }
   }
@@ -71,8 +78,8 @@ void Customer::sell_car(Car* _car){
 
   for(auto it = bought_cars.begin(); it != bought_cars.end();  ++it) {
     if(*it == _car) {
-      delete *it;
       bought_cars.erase(it);
+      delete *it;
       cout << "Car sold!" << endl;
     }
   }
