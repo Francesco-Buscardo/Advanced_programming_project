@@ -20,9 +20,7 @@ Rental::Rental(const Rental& _ren): Department(_ren), ID_rental(_ren.ID_rental){
 Rental::~Rental(){
 
   for(auto r : rentals_open) {
-    delete r->get_customer(); 
-    delete r->get_date();
-    delete r->get_car(); 
+    delete r;
   }
   rentals_open.clear();
 }
