@@ -26,7 +26,6 @@ class Car{
     Car(const Car& _car); 
     ~Car();               
 
-    //operator << per date - fl - car
     friend ostream& operator << (ostream& os, const Fuel& _fl);
     friend ostream& operator << (ostream& os, const Car& _car);
            bool     operator <  (const Car* _car) const;

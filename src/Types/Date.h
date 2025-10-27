@@ -18,7 +18,6 @@ class Date {
     friend ostream& operator <<(ostream& os, const Date& _date);
            bool     operator ==(const Date& _c) const;
 
-
     int get_day   () const;
     int get_month () const;
     int get_year  () const;

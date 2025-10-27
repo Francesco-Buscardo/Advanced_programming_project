@@ -16,7 +16,7 @@ compile: all
 	@echo "Build completed."
 
 run: all
-	@./$(EXEC) $(NAME_CONCESSIONARIA)
+	@./$(EXEC)
 
 valgrind: all
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(EXEC) $(NAME_CONCESSIONARIA)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(EXEC)

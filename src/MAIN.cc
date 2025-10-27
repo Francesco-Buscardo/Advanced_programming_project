@@ -3,17 +3,11 @@
 #include <string>
 using namespace std;
 
-int main(int argc, char *argv[]){
+#define NAME_CONCESSIONARIA "My CConcessionaria"
 
-  string name;
+int main(void){
 
-  if(argc == 1) {
-    name = "My Concessioanria";
-  } else {
-    name = argv[1];
-  }
-
-  Concessionaria c(name);
+  Concessionaria c(NAME_CONCESSIONARIA);
 
   c.init_datas();
 
