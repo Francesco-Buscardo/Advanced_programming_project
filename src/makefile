@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -g
-SRC = $(wildcard *.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc ./Customer/*.cc)
+SRC = $(wildcard *.cc ./Exceptions/*.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc ./Customer/*.cc)
 OBJ = $(SRC:.cc=.o)
 EXEC = concessionaria
 
@@ -16,7 +16,7 @@ compile: all
 	@echo "Build completed."
 
 run: all
-	@./$(EXEC) $(NAME_CONCESSIONARIA)
+	@./$(EXEC)
 
 valgrind: all
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(EXEC) $(NAME_CONCESSIONARIA)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(EXEC)

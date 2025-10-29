@@ -149,3 +149,22 @@ Car* Department::find_car_by_model(const string& _m){
 
   return nullptr;
 } 
+
+void Department::add_customer(){
+
+  string name_customer;
+  string lastname_customer;
+  int    age_customer;
+
+  cout << "Ins name: ";
+  cin  >> name_customer;
+  cout << "Ins name: ";
+  cin  >> lastname_customer;
+  cout << "Ins name: ";
+  cin  >> age_customer;
+  if(age_customer < 18) {
+    throw Not_Available_Value_Exception("Age < 18");
+  }
+
+  customers.insert(new Customer(name_customer, lastname_customer, age_customer));
+}

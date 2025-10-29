@@ -39,9 +39,11 @@ class Concessionaria{
     void        remove_shop           (Shop* _x);
     void        remove_laboratory     (Laboratory* _x);
     void        remove_rental         (Rental* _x);
+
     Shop*       get_shop              (const int& _id) const;
     Laboratory* get_laboratory        (const int& _id) const;
     Rental*     get_rental            (const int& _id) const;
+
     template<typename T>
     Car*        find_by_id            (T& _x);
     template<typename T>
@@ -61,9 +63,11 @@ class Concessionaria{
     void        register_rental       (Rental& _rental);
     void        register_return       (Rental& _rental);
     void        calculate_return      (Rental& _rental);
+
     void        management_shop       (Shop& _shop);
     void        management_laboratory (Laboratory& _lab);
     void        management_rental     (Rental& _rental);
+    
     void        init_datas            ();
     void        run_menu              ();
 };

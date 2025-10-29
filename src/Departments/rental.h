@@ -32,8 +32,8 @@ class Rental: public Department{
 
     void   register_rental   (Customer* _c, Date* _d, Car* _car);                       //add Date to rentals_open
     void   register_return   (Customer* _c, Date* _d, Car* _car);                       //remove Date from rentals_open
-    int    get_rate          () const;                                  
     int    calculate_rental  (Customer* _c, Date* _d, Car* _car);                       //calculate how much a customer have to pay
+    int    get_rate          () const;                                  
     int    get_ID            ()                                    const override;
 };
 

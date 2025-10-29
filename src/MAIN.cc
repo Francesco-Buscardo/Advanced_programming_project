@@ -1,21 +1,20 @@
 #include "concessionaria.h"
+#include "Exceptions/not_available_value_exception.h"
 #include <iostream>
 #include <string>
 using namespace std;
 
-int main(int argc, char *argv[]){
+#define NAME_CONCESSIONARIA "My Concessionaria"
 
-  string name;
+int main(void){
 
-  if(argc == 1) {
-    name = "My Concessioanria";
-  } else {
-    name = argv[1];
+  Concessionaria c(NAME_CONCESSIONARIA);
+
+  try {
+    c.init_datas();
+  } catch(const Not_Available_Value_Exception& e) {
+    cout << e.what() << endl;
   }
-
-  Concessionaria c(name);
-
-  c.init_datas();
 
   c.run_menu();
 
