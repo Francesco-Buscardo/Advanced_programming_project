@@ -4,6 +4,7 @@
 #include "../car.h"
 #include "../Staff/employee.h"
 #include "../Customer/customer.h"
+#include "../Exceptions/not_available_value_exception.h"
 #include <iostream>
 #include <string>
 #include <set>
@@ -38,6 +39,7 @@ class Department{
     virtual Car*       find_car_by_ID    (const int& _id);       
     virtual Car*       find_car_by_model (const string& _m);        
     virtual int        get_ID            ()                 const = 0;   
+    virtual void       add_customer      ();
 };
 
 ostream& operator <<(ostream& os, const Department& _dep);

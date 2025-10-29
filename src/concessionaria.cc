@@ -1,4 +1,6 @@
 #include "concessionaria.h"
+#include "Exceptions/not_available_type_exception.h"
+#include "Exceptions/not_available_value_exception.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -145,6 +147,9 @@ Car* Concessionaria::find_by_id(T& _x){
 
 	cout << "Ins id car: " << endl;
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0!");
+	}
 
 	return _x.find_car_by_ID(tmp_id);
 }
@@ -181,7 +186,11 @@ void Concessionaria::find_car(T& _x){
 			return;
 			break;
 		case 1:
-			cout << find_by_id(_x) << endl;
+			try {
+				cout << find_by_id(_x) << endl;
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 2:
 			cout << find_by_model(_x) << endl;
@@ -208,7 +217,7 @@ void Concessionaria::add_car(T& _x){
 	cout << "--> ";
 	cin  >> c;
 
-	switch(c){
+	switch(c) {
 		case 1: 
 			tmp_ft = GASOLINE;
 			break; 
@@ -222,24 +231,32 @@ void Concessionaria::add_car(T& _x){
 		  tmp_ft = GPL;
 			break;  
 		default: 
-			tmp_ft = GASOLINE;
+			throw Not_Available_Type_Exception("Not available Fuel Type!");
 			break;
 	}
 	Fuel tmp_f(tmp_ft);
 	cout << "Price:";
 	cin  >> tmp_price;
+	if(tmp_price < 0) {
+		throw Not_Available_Value_Exception("Price < 0!");
+	}
 	cout << "Model: ";
 	cin  >> tmp_m;
 
 	Car* car = new Car(tmp_f, tmp_price, tmp_m);
-	cout << "" << endl;
+
 	_x.add_car(car);
 }
 
 template<typename T>
 void Concessionaria::remove_car(T& _x){
 
-	Car* c = find_by_id<T>(_x);
+	Car* c;
+	try {
+		 c =  find_by_id<T>(_x);
+	} catch (const Not_Available_Value_Exception& e) {
+		cout << e.what() << endl;
+	}
 
 	if(c != nullptr) {
     _x.remove_car(c);        
@@ -251,6 +268,9 @@ void Concessionaria::sell_to(Shop& _shop){
 	int tmp_id;
 	cout << "Ins ID car: ";
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0!");
+	}
 
 	Car* tmp_car = _shop.find_car_by_ID(tmp_id);
 	
@@ -283,6 +303,9 @@ void Concessionaria::add_employee(T& _x){
 	cin  >> tmp_last;
 	cout << "age: " << endl;
 	cin  >> tmp_age;
+	if(tmp_age < 18) {
+		throw Not_Available_Value_Exception("Age < 18!");
+	}
 
 	K* empl = new K(tmp_name, tmp_last, tmp_age);
 
@@ -299,6 +322,9 @@ void Concessionaria::remove_employee(T& _x){
 
 	cout << "Ins ID: " << endl;
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0!");
+	}
 	cout << "Ins name: " << endl;
 	cin  >> tmp_name;
 	cout << "last name: " << endl;
@@ -313,7 +339,12 @@ void Concessionaria::remove_employee(T& _x){
 
 void Concessionaria::fix_car(Laboratory& _lab){
 
-	Car* c = find_by_id<Laboratory>(_lab);
+	Car* c;
+	try {
+		c = find_by_id<Laboratory>(_lab);
+	} catch(const Not_Available_Value_Exception& e) {
+		cout << e.what() << endl;
+	}
 
 	if(c != nullptr) {
 		_lab.fix_car(c);
@@ -332,10 +363,23 @@ void Concessionaria::register_rental(Rental& _rental){
 
 	cout << "ID customer: " << endl;
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0");
+	}
 
 	Customer* c = _rental.get_customer(tmp_id);
 	if(c == nullptr) {
-		cout << "Customer non registered!" << endl; 
+		bool y_n;
+
+		cout << "Customer non registered!" << endl
+				 << "Do you want register e new Customer? y/n" << endl; 
+		cin  >> y_n;
+
+		if(y_n) {
+			_rental.add_customer();
+		}
+
+		cout << "Customer have to be registered for renting cars!" << endl;
 		return; 
 	} 
 
@@ -349,16 +393,25 @@ void Concessionaria::register_rental(Rental& _rental){
 
 void Concessionaria::register_return(Rental& _rental){
 
-	Car* car = find_by_id<Rental>(_rental);
+	Car* car;
+	try {
+		car = find_by_id<Rental>(_rental);
+	} catch (const Not_Available_Value_Exception& e) {
+		cout << e.what() << endl;
+	}
+
 	if(car == nullptr){
 		cout << "Error!" << endl;
 		return;
 	}
 
 	int tmp_id; 
-
+	
 	cout << "ID customer: " << endl;
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0");
+	}
 
 	Customer* c = _rental.get_customer(tmp_id);
 
@@ -377,15 +430,14 @@ void Concessionaria::register_return(Rental& _rental){
 void Concessionaria::calculate_return(Rental& _rental){
 
 	Car* car = find_by_id<Rental>(_rental);
-	if(car == nullptr){
-		cout << "Error!" << endl;
-		return;
-	}
-
+	
 	int tmp_id; 
 
 	cout << "ID customer: " << endl;
 	cin  >> tmp_id;
+	if(tmp_id <= 0) {
+		throw Not_Available_Value_Exception("ID <= 0");
+	}
 
 	Customer* c = _rental.get_customer(tmp_id);
 
@@ -431,22 +483,40 @@ void Concessionaria::management_shop(Shop& _shop){
 			cout << _shop;
 			break;
 		case 2:
-			add_car<Shop>(_shop);
+			try {
+				add_car<Shop>(_shop);
+			} catch (const Not_Available_Type_Exception& e) {
+				cout << e.what() << endl;
+			}catch (const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 3:
 			remove_car<Shop>(_shop);
 			break;
 		case 4:
-			sell_to(_shop);
+			try {
+				sell_to(_shop);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 5:
 			find_car<Shop>(_shop);
 			break;
 		case 6:
-			add_employee<Shop, Shop_employee>(_shop);
+			try {
+				add_employee<Shop, Shop_employee>(_shop);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 7:
-			remove_employee<Shop, Shop_employee>(_shop);
+			try {
+				remove_employee<Shop, Shop_employee>(_shop);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		}
 	}
@@ -479,7 +549,13 @@ void Concessionaria::management_laboratory(Laboratory& _lab){
 			cout << _lab;
 			break;
 		case 2:
-			add_car<Laboratory>(_lab);
+			try {
+				add_car<Laboratory>(_lab);
+			} catch (const Not_Available_Type_Exception& e) {
+				cout << e.what() << endl;
+			} catch (const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 3:
 			fix_car(_lab);
@@ -488,10 +564,18 @@ void Concessionaria::management_laboratory(Laboratory& _lab){
 			find_car<Laboratory>(_lab);
 			break;
 		case 5:
-			add_employee<Laboratory, Mechanic>(_lab);
+			try {
+				add_employee<Laboratory, Mechanic>(_lab);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 6:
-			remove_employee<Laboratory, Mechanic>(_lab);	
+			try {
+				remove_employee<Laboratory, Mechanic>(_lab);	
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		}
 	}
@@ -527,28 +611,54 @@ void Concessionaria::management_rental(Rental& _rental){
 			cout << _rental;
 			break;
 		case 2:
-			add_car<Rental>(_rental);
+			try {
+				add_car<Rental>(_rental);
+			} catch (const Not_Available_Type_Exception& e) {
+				cout << e.what() << endl;
+			} catch (const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 3:
 			remove_car<Rental>(_rental);
 			break;
 		case 4:
-			register_rental(_rental);
+			try {
+				register_rental(_rental);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 5:
-			register_return(_rental);
+			try {
+				register_return(_rental);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 6:
-			calculate_return(_rental);
+			try{
+				calculate_return(_rental);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 7:
 			find_car<Rental>(_rental);
 			break;
 		case 8:
-			add_employee<Rental, Rental_employee>(_rental);
+			try {
+				add_employee<Rental, Rental_employee>(_rental);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		case 9:
-			remove_employee<Rental, Rental_employee>(_rental);
+			try {
+				remove_employee<Rental, Rental_employee>(_rental);
+			} catch(const Not_Available_Value_Exception& e) {
+				cout << e.what() << endl;
+			}
 			break;
 		}
 	}
@@ -564,15 +674,24 @@ void Concessionaria::init_datas(){
 	int n_rentals;
 
 	while(init_file >> n_shops >> n_labs >> n_rentals) {
+		if(n_shops <= 0) {
+			throw Not_Available_Value_Exception("n_shops in init_file.txt <= 0!");
+		}
 		while(n_shops > 0) {
 			Shop* s = new Shop();
 		  this->add_shop(s);
 			--n_shops;
 		}
+		if(n_labs <= 0) {
+			throw Not_Available_Value_Exception("n_lbs in init_file.txt <= 0!");
+		}
 		while(n_labs > 0) {
 			Laboratory* l = new Laboratory();
 			this->add_laboratory(l);
 			--n_labs;
+		}
+		if(n_rentals <= 0) {
+			throw Not_Available_Value_Exception("n_rentals in init_file.txt <= 0!");
 		}
 		while(n_rentals > 0) {
 			Rental* r = new Rental();
@@ -614,7 +733,7 @@ void Concessionaria::run_menu() {
         }
         break;
       case 2:
-        cout << "Ins Shop ID: " << endl;
+        cout << "Ins Rental ID: " << endl;
         cin  >> id;
 
         if(get_rental(id) != nullptr) {
@@ -624,7 +743,7 @@ void Concessionaria::run_menu() {
         }
         break;
       case 3:
-        cout << "Ins Shop ID: " << endl;
+        cout << "Ins Laboratory ID: " << endl;
         cin  >> id;
 
         if(get_laboratory(id) != nullptr) {

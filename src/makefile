@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -g
-SRC = $(wildcard *.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc ./Customer/*.cc)
+SRC = $(wildcard *.cc ./Exceptions/*.cc ./Departments/*.cc ./Types/*.cc ./Problems/*.cc ./Staff/*.cc ./Customer/*.cc)
 OBJ = $(SRC:.cc=.o)
 EXEC = concessionaria
 
